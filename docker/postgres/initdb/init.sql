@@ -1,0 +1,19 @@
+CREATE ROLE wsg_user WITH
+    LOGIN
+    PASSWORD 'eU9NCE0OXqYCiUeISFzfZXLzuqvEQrkyr+tqsYx+SB4='
+    NOSUPERUSER
+    INHERIT
+    NOCREATEDB
+    NOCREATEROLE
+    NOREPLICATION;
+
+CREATE DATABASE wsg_database WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    TABLESPACE = pg_default
+    LC_COLLATE = 'PL_PL.UTF-8'
+    LC_CTYPE = 'PL_PL.UTF-8'
+    CONNECTION LIMIT = -1
+
+\connect wsg_database
+CREATE SCHEMA IF NOT EXISTS wsg
