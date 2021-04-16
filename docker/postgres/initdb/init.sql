@@ -16,20 +16,45 @@ CREATE DATABASE wsg_database WITH
     CONNECTION LIMIT = -1;
 
 \connect wsg_database
-CREATE SCHEMA IF NOT EXISTS wsg;
 
 CREATE TABLE employee (
     id BIGSERIAL NOT NULL PRIMARY KEY,
     name VARCHAR(30) NOT NULL,
-    availability INTEGER[] NOT NULL,
     days_left INTEGER,
-    volume_factor DECIMAL(10,2)
+    volume_factor DECIMAL(10,2),
+    app_user_id BIGSERIAL NOT NULL
+);
+
+CREATE TABLE employee_availability (
+    employee_id BIGSERIAL,
+    availability INTEGER
 );
 
 CREATE TABLE app_user (
     id BIGSERIAL NOT NULL PRIMARY KEY,
     first_name VARCHAR(15) NOT NULL,
     last_name VARCHAR(15) NOT NULL,
-    password VARCHAR(20) NOT NULL,
-    username VARCHAR(20) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    username VARCHAR(20) NOT NULL,
+    app_user_role varchar(10),
+    locked boolean,
+    enabled boolean
+);
+
+INSERT INTO app_user (
+    first_name,
+    last_name,
+    username,
+    password,
+    app_user_role,
+    locked,
+    enabled
+) VALUES (
+    'admin',
+    'admin',
+    'admin',
+    '$2a$10$6l5lmpxymHc9MNAumCPljeOZaLuSDrchoX5IZHlai2duUzi0jZjNa',
+    'ADMIN',
+    false,
+    true
 );

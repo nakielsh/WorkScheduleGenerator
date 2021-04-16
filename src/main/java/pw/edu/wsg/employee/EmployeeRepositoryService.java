@@ -23,7 +23,7 @@ public class EmployeeRepositoryService implements EmployeeService {
     public Long createEmployee(CreateEmployeeRequest request) {
         LOG.info(format("Saving employee: %s", request));
 
-        Employee newEmployee = new Employee(request.getName(), request.getAvailability());
+        Employee newEmployee = new Employee(request.getName(), request.getAvailability(), request.getApp_user_id());
         Employee savedEmployee = employeeRepository.save(newEmployee);
         Long newEmployeeId = savedEmployee.getId();
 

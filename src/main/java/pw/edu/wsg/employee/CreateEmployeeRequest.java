@@ -15,6 +15,9 @@ public class CreateEmployeeRequest {
     @ApiModelProperty(required = true)
     private List<Integer> availability = new ArrayList<>();
 
+    @ApiModelProperty(required = true)
+    private Long app_user_id;
+
     public CreateEmployeeRequest() {
     }
 
@@ -37,6 +40,14 @@ public class CreateEmployeeRequest {
 
     public void setAvailability(List<Integer> availability) {
         this.availability = availability;
+    }
+
+    public Long getApp_user_id() {
+        return app_user_id;
+    }
+
+    public void setApp_user_id(Long app_user_id) {
+        this.app_user_id = app_user_id;
     }
 
     @Override

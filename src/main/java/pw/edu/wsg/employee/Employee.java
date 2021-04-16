@@ -14,14 +14,8 @@ import java.util.List;
 public class Employee implements Serializable {
 
     @Id
-//    @SequenceGenerator(
-//            name = "employee_sequence",
-//            sequenceName = "employee_sequence",
-//            allocationSize = 1
-//    )
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
-            //generator = "employee_sequence")
     )
     private Long id;
 
@@ -31,6 +25,9 @@ public class Employee implements Serializable {
     @ElementCollection
     @Nullable
     private List<Integer> availability;
+
+    @NotNull
+    private Long app_user_id;
 
     @Nullable
     private Integer daysLeft = 0;
@@ -42,16 +39,10 @@ public class Employee implements Serializable {
     }
 
 
-//    public Employee(String name, List<Integer> availability, Integer daysLeft, Double volumeFactor) {
-//        this.name = name;
-//        this.availability = availability;
-//        this.daysLeft = daysLeft;
-//        this.volumeFactor = volumeFactor;
-//    }
-
-    public Employee(String name, List<Integer> availability) {
+    public Employee(String name, @Nullable List<Integer> availability, Long app_user_id) {
         this.name = name;
         this.availability = availability;
+        this.app_user_id = app_user_id;
     }
 
     public String getName() {
@@ -62,12 +53,21 @@ public class Employee implements Serializable {
         this.name = name;
     }
 
+    @Nullable
     public List<Integer> getAvailability() {
         return availability;
     }
 
-    public void setAvailability(List<Integer> availability) {
+    public void setAvailability(@Nullable List<Integer> availability) {
         this.availability = availability;
+    }
+
+    public Long getApp_user_id() {
+        return app_user_id;
+    }
+
+    public void setApp_user_id(Long app_user_id) {
+        this.app_user_id = app_user_id;
     }
 
     public Long getId() {

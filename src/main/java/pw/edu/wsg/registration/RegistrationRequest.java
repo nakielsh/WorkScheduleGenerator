@@ -1,11 +1,10 @@
-package pw.edu.wsg.appuser;
-
+package pw.edu.wsg.registration;
 
 import com.sun.istack.NotNull;
 import io.swagger.annotations.ApiModelProperty;
+import pw.edu.wsg.appuser.AppUserRole;
 
-
-public class CreateAppUserRequest {
+public class RegistrationRequest {
 
     @ApiModelProperty(example = "Jan", required = true)
     @NotNull
@@ -23,11 +22,10 @@ public class CreateAppUserRequest {
     @NotNull
     private String username;
 
-
-    public CreateAppUserRequest() {
+    public RegistrationRequest() {
     }
 
-    public CreateAppUserRequest(String firstName, String lastName, String password, String username) {
+    public RegistrationRequest(String firstName, String lastName, String password, String username) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
@@ -38,35 +36,17 @@ public class CreateAppUserRequest {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getUsername() {
+        return username;
     }
-
-
 
     @Override
     public String toString() {
