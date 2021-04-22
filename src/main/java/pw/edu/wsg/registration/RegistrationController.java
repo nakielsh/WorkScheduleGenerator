@@ -1,12 +1,12 @@
 package pw.edu.wsg.registration;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import pw.edu.wsg.appuser.AppUser;
 
-@RestController
-@RequestMapping(path = "api/v1/registration")
+@Controller
+@RequestMapping(path = "/registration")
 public class RegistrationController {
 
     private RegistrationService registrationService;
@@ -15,8 +15,21 @@ public class RegistrationController {
         this.registrationService = registrationService;
     }
 
-    @PostMapping
-    public String register(@RequestBody RegistrationRequest request){
-        return registrationService.register(request);
+//    @PostMapping("/cos")
+//    public String register(@RequestBody RegistrationRequest request){
+//        return registrationService.register(request);
+//    }
+
+    @GetMapping("")
+    public  String showRegistrationForm(Model model){
+        model.addAttribute("app_user", new AppUser());
+        return "registration-form";
     }
+
+    @PostMapping("/process_register")
+    public String processRegistration(AppUser appUser){
+        registrationService.register1(appUser);
+        return "register-success";
+    }
+
 }
