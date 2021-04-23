@@ -24,7 +24,6 @@ public class RegistrationController {
         this.appUserRepositoryService = appUserRepositoryService;
     }
 
-
     @GetMapping("")
     public  String showRegistrationForm( Model model){
         model.addAttribute("app_user", new AppUser());
