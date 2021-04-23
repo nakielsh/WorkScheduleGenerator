@@ -29,9 +29,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/registration")
                     .permitAll()
-                .anyRequest()
-                .authenticated().and()
-                .formLogin();
+                .anyRequest().permitAll()
+                .and()
+                .formLogin()
+                    .usernameParameter("username")
+                    .defaultSuccessUrl("/home")
+                    .permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/").permitAll()
+
+        ;
     }
 
     @Override

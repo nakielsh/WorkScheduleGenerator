@@ -56,7 +56,7 @@ public class AppUser implements UserDetails {
     }
 
     public AppUser() {
-
+        this.appUserRole = AppUserRole.USER;
     }
 
 
