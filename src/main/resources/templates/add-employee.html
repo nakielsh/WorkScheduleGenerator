@@ -21,7 +21,7 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-light sticky-top">
   <a class="navbar-brand" href="#">
     <img src="https://i.imgur.com/QbLHnon.png" width="100" height="30" class="d-inline-block align-top" alt="">
   </a>
@@ -30,7 +30,9 @@
 <div class="jumbotron jumbotron-fluid">
   <div class="container text-center">
     <div>
-      <h1>Add first employee to the schedule</h1>
+      <h1 class="display-4">Add first employee to the schedule</h1>
+      <p>Type name and select available days for the employee</p>
+      <hr class="my-4">
     </div>
 
     <form method="post" th:action="@{/home/add-employees}"  th:object="${addedEmployee}">
