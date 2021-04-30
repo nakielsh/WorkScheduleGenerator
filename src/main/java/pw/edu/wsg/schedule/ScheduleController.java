@@ -9,6 +9,7 @@ import pw.edu.wsg.employee.EmployeeRepository;
 import pw.edu.wsg.employee.EmployeeService;
 import pw.edu.wsg.registration.RegistrationService;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -67,6 +68,7 @@ public class ScheduleController {
             if(employeeToRemove != null){
                 employeeList.remove(employeeToRemove);
             }
+
             employeeList.add(addedEmployee);
             LOG.info(format("Employee : %s", addedEmployee));
             scheduleService.addEmployee(addedEmployee);
@@ -119,5 +121,6 @@ public class ScheduleController {
 
         return "redirect:/home/post-delete-add";
     }
+
 
 }

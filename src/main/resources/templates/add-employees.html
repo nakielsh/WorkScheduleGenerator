@@ -91,6 +91,51 @@
         </tbody>
 
       </table>
+        <div class="jumbotron">
+        <p class="lead">
+          Show information about generating algorithms
+        </p>
+        <p>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boe" aria-expanded="true" aria-controls="boe">
+            BOE
+          </button>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boa" aria-expanded="true" aria-controls="boa">
+            BOA
+          </button>
+          <div class="row">
+            <div class="col">
+              <div class="collapse multi-collapse" id="boe">
+                <div class="card card-body font-weight-light">
+                  <p class="lead font-weight-bolder">BOE - Based On Equality</p>
+                  <hr class="my-4">
+                  Algorithm spares the work equally. Everyone has almost the same amount of working days.
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="collapse multi-collapse" id="boa">
+                <div class="card card-body font-weight-light">
+                  <p class="lead font-weight-bolder">BOA - Based On Availability</p>
+                  <hr class="my-4">
+                  Algorithm spares the work considering everyone's availability. The more you are available, the more days you work.
+                </div>
+              </div>
+            </div>
+          </div>
+        <p>
+        <div class="dropdown">
+          <button class="btn btn-outline-dark dropdown-toggle btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Generate schedule using:
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">BOE</a>
+            <a class="dropdown-item" href="#">BOA</a>
+          </div>
+        </div>
+        </p>
+      </div>
+
+
     </div>
   </div>
 

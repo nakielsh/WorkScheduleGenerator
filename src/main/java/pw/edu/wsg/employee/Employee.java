@@ -7,6 +7,7 @@ import org.springframework.lang.Nullable;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -59,6 +60,9 @@ public class Employee implements Serializable {
     }
 
     public void setAvailability(@Nullable List<Integer> availability) {
+        if(availability != null){
+            Collections.sort(availability);
+        }
         this.availability = availability;
     }
 
