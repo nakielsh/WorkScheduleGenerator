@@ -38,4 +38,9 @@ public class EmployeeRepositoryService implements EmployeeService {
         return employeeRepository.findAll();
     }
 
+    @Override
+    public Employee getEmployee(Long id){
+        return employeeRepository.getOne(id);
+    }
+
 }

@@ -71,13 +71,9 @@
   var year = parseInt(/*[[${pickedYear}]]*/ 'default');
   var month = parseInt(/*[[${pickedMonth}]]*/ 'default');
   var days = parseInt(/*[[${days}]]*/ 'default');
-  console.log(year);
-  console.log(month);
-  console.log(days);
-
-
   var beginningDate = new Date(year, month-1,1);
   var lastDate = new Date(year, month-1,days);
+
   $("#datepicker_day").datepicker( {
     multidate: true,
     format: " dd",

@@ -28,12 +28,12 @@
 </nav>
 
 
-
 <div class="jumbotron jumbotron-fluid">
   <div class="container text-center">
     <div>
       <h1>Add another employee to the schedule</h1>
     </div>
+
 
     <form method="post" th:action="@{/home/add-employees}"  th:object="${addedEmployee}">
 
@@ -75,13 +75,18 @@
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Availability</th>
+          <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="employee :${employeeList}">
-          <th scope="row" th:text="${employee?.id}"></th>
-          <td th:text="${employee?.name}"></td>
-          <td th:text="${employee?.availability}"></td>
+          <th scope="row" th:text="${employeeStat.index+1}"></th>
+          <td th:text="${employee.name}"></td>
+          <td th:text="${employee.availability}"></td>
+          <td>
+            <a  th:href="@{/home/delete-employee/__${employee.name}__}" class="btn btn-danger">Delete</a>
+          </td>
+
         </tr>
         </tbody>
 
@@ -97,10 +102,6 @@
   var year = parseInt(/*[[${pickedYear}]]*/ 'default');
   var month = parseInt(/*[[${pickedMonth}]]*/ 'default');
   var days = parseInt(/*[[${days}]]*/ 'default');
-  console.log(year);
-  console.log(month);
-  console.log(days);
-
 
   var beginningDate = new Date(year, month-1,1);
   var lastDate = new Date(year, month-1,days);

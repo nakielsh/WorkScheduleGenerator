@@ -2,15 +2,15 @@ package pw.edu.wsg.schedule;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pw.edu.wsg.employee.Employee;
+import pw.edu.wsg.employee.EmployeeRepository;
 import pw.edu.wsg.employee.EmployeeService;
 import pw.edu.wsg.registration.RegistrationService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import static java.lang.String.format;
@@ -20,12 +20,16 @@ import static java.lang.String.format;
 public class ScheduleController {
 
     private final EmployeeService employeeService;
+    private EmployeeRepository employeeRepository;
+    private final ScheduleService scheduleService;
     private static final Logger LOG = Logger.getLogger(RegistrationService.class.getName());
     private Schedule schedule1;
 
-    public ScheduleController(EmployeeService employeeService) {
+    public ScheduleController(EmployeeService employeeService, ScheduleService scheduleService) {
         this.employeeService = employeeService;
+        this.scheduleService = scheduleService;
     }
+
 
     @GetMapping("")
     public String showHomepage(Model model){
@@ -49,13 +53,30 @@ public class ScheduleController {
     }
 
     @PostMapping("/add-employees")
-    public String addEmployees(Employee addedEmployee, Model model ){
+    public String addEmployees(Employee addedEmployee, Model model){
         LOG.info(format("Schedule : %s", schedule1));
-        LOG.info(format("Employee : %s", addedEmployee));
-        this.schedule1.addToEmployeeList(addedEmployee);
-        LOG.info(format("Added Schedule : %s", schedule1));
-
         List<Employee> employeeList = schedule1.getEmployeeList();
+        Employee employeeToRemove = null;
+
+        if(addedEmployee != null){
+            for( Employee employee : employeeList){
+                if(employee.getName().equals(addedEmployee.getName())){
+                    employeeToRemove = employee;
+                }
+            }
+            if(employeeToRemove != null){
+                employeeList.remove(employeeToRemove);
+            }
+            employeeList.add(addedEmployee);
+            LOG.info(format("Employee : %s", addedEmployee));
+            scheduleService.addEmployee(addedEmployee);
+            model.addAttribute("notification",
+                    String.format("Contractor \"%s\" successfully saved", addedEmployee.getName()));
+            model.addAttribute("action", "save");
+
+        }
+
+        LOG.info(format("Added Schedule : %s", schedule1));
 
         model.addAttribute("employeeList", employeeList);
 
@@ -63,9 +84,40 @@ public class ScheduleController {
         model.addAttribute("pickedYear", schedule1.getYear());
         model.addAttribute("days", schedule1.getDaysInMonth());
         model.addAttribute("addedEmployee", new Employee());
+
         return "add-employees";
+    }
+
+    @GetMapping("/post-delete-add")
+    public String addEmployeesAfterDelete(Model model ){
+        LOG.info(format("Schedule : %s", schedule1));
+        List<Employee> employeeList = schedule1.getEmployeeList();
 
 
+        LOG.info(format("Added Schedule : %s", schedule1));
+
+        model.addAttribute("employeeList", employeeList);
+
+        model.addAttribute("pickedMonth", schedule1.getMonth());
+        model.addAttribute("pickedYear", schedule1.getYear());
+        model.addAttribute("days", schedule1.getDaysInMonth());
+        model.addAttribute("addedEmployee", new Employee());
+
+        return "add-employees";
+    }
+
+
+    @GetMapping("/delete-employee/{name}")
+    public String deleteEmployee(@PathVariable(name = "name") String deletedEmployeeName){
+
+        if(!schedule1.getEmployeeList().isEmpty()){
+            schedule1.getEmployeeList().removeIf(emp -> emp.getName().equals(deletedEmployeeName));
+        }
+
+        List<Employee> employeeList = schedule1.getEmployeeList();
+
+
+        return "redirect:/home/post-delete-add";
     }
 
 }

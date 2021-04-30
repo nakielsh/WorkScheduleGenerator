@@ -26,7 +26,7 @@ public class Employee implements Serializable {
     @Nullable
     private List<Integer> availability;
 
-    @NotNull
+    @Nullable
     private Long app_user_id;
 
     @Nullable

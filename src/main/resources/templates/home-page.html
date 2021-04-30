@@ -32,8 +32,8 @@
       <p>Select year and month of the generating schedule</p>
       <hr class="my-4">
       <form method="post" th:action="@{/home/add-employee}"  th:object="${schedule}">
-      <p class="lead"><input type="text"  id="datepicker_year" placeholder="Year" th:field="*{year}"/></p>
-      <p class="lead"><input type="text" id="datepicker_month" placeholder="Month" th:field="*{month}"/></p>
+      <p class="lead"><input type="text"  id="datepicker_year" placeholder="Year" th:field="*{year}" required></p>
+      <p class="lead"><input type="text" id="datepicker_month" placeholder="Month" th:field="*{month}" required></p>
       <button type="submit" class="btn btn-outline-primary btn-lg"  >Next</button>
       </form>
     </div>
@@ -47,8 +47,7 @@
   $("#datepicker_year").datepicker( {
     format: " yyyy",
     viewMode: "years",
-    minViewMode: "years",
-    startView: 2
+    minViewMode: "years"
   });
 </script>
 

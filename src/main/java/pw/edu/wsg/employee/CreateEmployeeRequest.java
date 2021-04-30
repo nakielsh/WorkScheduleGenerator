@@ -1,21 +1,21 @@
 package pw.edu.wsg.employee;
 
 import com.sun.istack.NotNull;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CreateEmployeeRequest {
 
-    @ApiModelProperty(example = "Lisek Ogrodniczek", required = true)
+//    @ApiModelProperty(example = "Lisek Ogrodniczek", required = true)
     @NotNull
     private String name;
 
-    @ApiModelProperty(required = true)
+//    @ApiModelProperty(required = true)
     private List<Integer> availability = new ArrayList<>();
 
-    @ApiModelProperty(required = true)
+//    @ApiModelProperty(required = true)
     private Long app_user_id;
 
     public CreateEmployeeRequest() {
