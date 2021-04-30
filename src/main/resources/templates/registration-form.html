@@ -54,10 +54,13 @@
             <label class="col-form-label">
               <input type="text" class="form-control shadow bg-body rounded" placeholder="username" th:field="*{username}" required
                      minlength="2" maxlength="20">
+              <div th:if="${#request.getParameter('failed')}" class="alert alert-danger shadow bg-body rounded col-form-label-sm" role="alert">
+                Username already taken
+              </div>
             </label>
-            <div th:if="${#request.getParameter('failed')}" class="alert alert-danger shadow bg-body rounded" role="alert">
-              Username already taken - try another one
-            </div>
+
+
+
           </div>
         </div>
 
