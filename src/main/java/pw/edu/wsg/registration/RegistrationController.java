@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pw.edu.wsg.appuser.AppUser;
 import pw.edu.wsg.appuser.AppUserRepositoryService;
 
@@ -30,22 +31,16 @@ public class RegistrationController {
         return "registration-form";
     }
 
-    @GetMapping("/fail")
-    public  String registrationError( Model model){
-        model.addAttribute("app_user", new AppUser());
-        return "registration-form-fail";
-    }
-
     @PostMapping("/success")
-    public String processRegistration(@Validated AppUser app_user){
+    public String processRegistration(@Validated AppUser app_user, RedirectAttributes redirectAttributes){
 
         try {
             appUserRepositoryService.signUpUser(app_user);
         } catch (Exception e) {
             LOG.info(format("Error appUser: %s", app_user.getFirstName()));
-            return "redirect:/registration/fail";
+            redirectAttributes.addAttribute("failed", true);
+            return "redirect:/registration";
         }
-
         return "register-success";
     }
 

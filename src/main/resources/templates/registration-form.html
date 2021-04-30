@@ -55,6 +55,9 @@
               <input type="text" class="form-control shadow bg-body rounded" placeholder="username" th:field="*{username}" required
                      minlength="2" maxlength="20">
             </label>
+            <div th:if="${#request.getParameter('failed')}" class="alert alert-danger shadow bg-body rounded" role="alert">
+              Username already taken - try another one
+            </div>
           </div>
         </div>
 
@@ -73,6 +76,10 @@
         <label class="col-3">
           <button type="submit" class="col btn btn-outline-primary shadow bg-body rounded" >Sign Up</button>
         </label>
+
+        <p>
+          Already have an account? <a th:href="@{/login}" class="link-primary">Log in</a>
+        </p>
 
       </div>
       </form>

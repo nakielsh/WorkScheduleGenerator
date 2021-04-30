@@ -67,6 +67,7 @@ public class ScheduleController {
             }
             if(employeeToRemove != null){
                 employeeList.remove(employeeToRemove);
+                model.addAttribute("isEdited", true);
             }
 
             employeeList.add(addedEmployee);
@@ -75,6 +76,12 @@ public class ScheduleController {
             model.addAttribute("notification",
                     String.format("Contractor \"%s\" successfully saved", addedEmployee.getName()));
             model.addAttribute("action", "save");
+
+            if(model.getAttribute("isEdited") == null){
+                model.addAttribute("isAdded", true);
+            }
+            model.addAttribute("name", addedEmployee.getName());
+
 
         }
 
@@ -110,13 +117,15 @@ public class ScheduleController {
 
 
     @GetMapping("/delete-employee/{name}")
-    public String deleteEmployee(@PathVariable(name = "name") String deletedEmployeeName){
+    public String deleteEmployee(@PathVariable(name = "name") String deletedEmployeeName, RedirectAttributes redirectAttributes){
 
         if(!schedule1.getEmployeeList().isEmpty()){
             schedule1.getEmployeeList().removeIf(emp -> emp.getName().equals(deletedEmployeeName));
         }
 
         List<Employee> employeeList = schedule1.getEmployeeList();
+        redirectAttributes.addAttribute("isDeleted", true);
+        redirectAttributes.addAttribute("name", deletedEmployeeName);
 
 
         return "redirect:/home/post-delete-add";
