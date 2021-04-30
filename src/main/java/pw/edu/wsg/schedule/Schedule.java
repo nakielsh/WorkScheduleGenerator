@@ -13,8 +13,8 @@ public class Schedule {
 
     private Map<Integer, Employee> dictionary;
     private List<Employee> employeeList = new ArrayList<>();
-    private int year;
-    private int month;
+    private Integer year;
+    private Integer month;
     private int daysInMonth;
 
     public Schedule() {
@@ -33,7 +33,7 @@ public class Schedule {
         this.dictionary = dictionary;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
@@ -41,7 +41,7 @@ public class Schedule {
         this.year = year;
     }
 
-    public int getMonth() {
+    public Integer getMonth() {
         return month;
     }
 

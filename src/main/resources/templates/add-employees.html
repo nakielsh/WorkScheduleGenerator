@@ -41,7 +41,7 @@
 
         <div class="form-group row">
           <div class="col">
-            <label class="col-form-label">
+            <label class="col-form-label form-control-lg">
               <input type="text" class="form-control" id="name" placeholder="Name"  th:field="*{name}" required
                      minlength="1" maxlength="25" >
             </label>
@@ -50,8 +50,8 @@
 
         <div class="form-group row">
           <div class="col">
-            <label class="col-form-label">
-              <input type="text" id="datepicker_day" placeholder="Availability" th:field="*{availability}" required>
+            <label class="col-form-label form-control-lg">
+              <input type="text" id="datepicker_day" placeholder="Availability" readonly="readonly" th:field="*{availability}" required>
             </label>
           </div>
         </div>
@@ -155,6 +155,8 @@
     format: " dd",
     viewMode: "days",
     minViewMode: "days",
+    maxViewMode: "days",
+    keyboardNavigation: "false",
     startDate: beginningDate,
     endDate: lastDate
   });

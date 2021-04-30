@@ -32,17 +32,23 @@
       <p>Select year and month of the generating schedule</p>
       <hr class="my-4">
       <form method="post" th:action="@{/home/add-employee}"  th:object="${schedule}">
-        <p>
-          <label class="lead">
-            <input type="text"  id="datepicker_year" placeholder="Year" th:field="*{year}" required>
-          </label>
-        </p>
 
-        <p>
-          <label class="lead">
-            <input type="text" id="datepicker_month" placeholder="Month" th:field="*{month}" required>
-          </label>
-        </p>
+        <div class="form-group row">
+          <div class="col">
+            <label class="col-form-label form-control-lg">
+              <input placeholder="Year" type="text"   id="datepicker_year"  readonly="readonly"  th:field="*{year}" required>
+            </label>
+          </div>
+        </div>
+
+
+        <div class="form-group row form-control-lg">
+          <div class="col">
+            <label class="col-form-label">
+              <input placeholder="Month" type="text" id="datepicker_month"  readonly="readonly" th:field="*{month}" required>
+            </label>
+          </div>
+        </div>
 
         <p>
           <button type="submit" class="btn btn-outline-primary btn-lg"  >Next</button>
@@ -60,15 +66,20 @@
   $("#datepicker_year").datepicker( {
     format: "yyyy",
     viewMode: "years",
-    minViewMode: "years"
+    minViewMode: "years",
+    maxViewMode: "years",
+    assumeNearbyYear:"true",
+    defaultViewDate: "today"
   });
 </script>
 
 <script type="text/javascript">
   $("#datepicker_month").datepicker( {
-    format: "mm",
+    format: " mm",
     viewMode: "months",
-    minViewMode: "months"
+    minViewMode: "months",
+    maxViewMode: "months",
+    defaultViewDate: "today"
   });
 </script>
 </html>
