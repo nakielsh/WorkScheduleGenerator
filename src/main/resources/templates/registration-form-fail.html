@@ -16,7 +16,7 @@
 <body>
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="#">
-    <img src="https://i.imgur.com/QbLHnon.png" width="150" height="40" class="d-inline-block align-top" alt="">
+    <img src="https://i.imgur.com/QbLHnon.png" width="100" height="30" class="d-inline-block align-top" alt="">
   </a>
 </nav>
 <div class="jumbotron jumbotron-fluid">
@@ -33,7 +33,7 @@
       <div class="form-group row">
         <div class="col">
           <label class="col-form-label">
-            <input type="text" class="form-control" id="firstName" placeholder="First Name" th:field="*{firstName}" required
+            <input type="text" class="form-control shadow bg-body rounded" id="firstName" placeholder="First Name" th:field="*{firstName}" required
                    minlength="2" maxlength="15" />
           </label>
         </div>
@@ -42,7 +42,7 @@
       <div class="form-group row">
         <div class="col">
           <label class="col-form-label">
-            <input type="text" class="form-control" placeholder="Last Name" th:field="*{lastName}" required
+            <input type="text" class="form-control shadow bg-body rounded" placeholder="Last Name" th:field="*{lastName}" required
                    minlength="2" maxlength="15" />
           </label>
         </div>
@@ -51,10 +51,10 @@
       <div class="form-group row">
         <div class="col">
           <label class="col-form-label">
-            <input type="text" class="form-control" placeholder="username" th:field="*{username}" required
+            <input type="text" class="form-control shadow bg-body rounded" placeholder="username" th:field="*{username}" required
                    minlength="2" maxlength="20"/>
           </label>
-          <div class="alert alert-danger" role="alert">
+          <div class="alert alert-danger shadow bg-body rounded" role="alert">
             Username already taken - try another one
           </div>
         </div>
@@ -63,7 +63,7 @@
       <div class="form-group row">
         <div class="col">
           <label class="col-form-label">
-            <input type="password" class="form-control" placeholder="password" th:field="*{password}" required
+            <input type="password" class="form-control shadow bg-body rounded" placeholder="password" th:field="*{password}" required
                    minlength="5" maxlength="100"/>
           </label>
           <small id="passwordHelpBlock" class="form-text text-muted">
@@ -72,9 +72,9 @@
         </div>
       </div>
 
-      <div>
-        <button type="submit" class="btn btn-outline-primary" >Sign Up</button>
-      </div>
+      <label class="col-3">
+        <button type="submit" class="col btn btn-outline-primary shadow bg-body rounded" >Sign Up</button>
+      </label>
 
     </div>
   </form>

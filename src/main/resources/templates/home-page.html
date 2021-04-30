@@ -36,7 +36,7 @@
         <div class="form-group row">
           <div class="col">
             <label class="col-form-label form-control-lg">
-              <input placeholder="Year" type="text"   id="datepicker_year"  readonly="readonly"  th:field="*{year}" required>
+              <input class="form-control shadow bg-body rounded" placeholder="Year" type="text"   id="datepicker_year"  readonly="readonly"  th:field="*{year}" required>
             </label>
           </div>
         </div>
@@ -45,14 +45,18 @@
         <div class="form-group row form-control-lg">
           <div class="col">
             <label class="col-form-label">
-              <input placeholder="Month" type="text" id="datepicker_month"  readonly="readonly" th:field="*{month}" required>
+              <input class="form-control shadow bg-body rounded" placeholder="Month" type="text" id="datepicker_month"  readonly="readonly" th:field="*{month}" required>
             </label>
           </div>
         </div>
 
-        <p>
-          <button type="submit" class="btn btn-outline-primary btn-lg"  >Next</button>
-        </p>
+        <div>
+          <div class="col">
+            <label class="col-form-label form-control-lg">
+             <button type="submit" class="btn btn-outline-primary btn-lg shadow bg-body rounded">Next</button>
+            </label>
+          </div>
+        </div>
 
       </form>
     </div>

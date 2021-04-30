@@ -39,8 +39,8 @@
 
         <div class="form-group row">
           <div class="col">
-            <label class="col-form-label form-control-lg">
-              <input type="text" class="form-control" id="name" placeholder="Name"  th:field="*{name}" required
+            <label class="col-form-label form-control-lg ">
+              <input type="text" class="form-control shadow bg-body rounded" id="name" placeholder="Name"  th:field="*{name}" required
                      minlength="1" maxlength="25" >
             </label>
           </div>
@@ -49,13 +49,17 @@
         <div class="form-group row form-control-lg">
           <div class="col">
             <label class="col-form-label">
-              <input type="text" id="datepicker_day" placeholder="Availability" readonly="readonly" th:field="*{availability}" required>
+              <input  class="form-control shadow bg-body rounded" type="text" id="datepicker_day" placeholder="Availability" readonly="readonly" th:field="*{availability}" required>
             </label>
           </div>
         </div>
 
         <div>
-          <button type="submit" class="btn btn-outline-primary" >Add</button>
+          <div class="col">
+            <label class="col-form-label">
+              <button type="submit" class="btn btn-outline-primary shadow bg-body rounded" >Add</button>
+            </label>
+          </div>
         </div>
 
       </div>

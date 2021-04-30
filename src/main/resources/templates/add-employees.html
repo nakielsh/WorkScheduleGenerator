@@ -42,7 +42,7 @@
         <div class="form-group row">
           <div class="col">
             <label class="col-form-label form-control-lg">
-              <input type="text" class="form-control" id="name" placeholder="Name"  th:field="*{name}" required
+              <input type="text" class="form-control shadow bg-body rounded" id="name" placeholder="Name"  th:field="*{name}" required
                      minlength="1" maxlength="25" >
             </label>
           </div>
@@ -51,13 +51,17 @@
         <div class="form-group row">
           <div class="col">
             <label class="col-form-label form-control-lg">
-              <input type="text" id="datepicker_day" placeholder="Availability" readonly="readonly" th:field="*{availability}" required>
+              <input class="form-control shadow bg-body rounded" type="text" id="datepicker_day" placeholder="Availability" readonly="readonly" th:field="*{availability}" required>
             </label>
           </div>
         </div>
 
         <div>
-          <button type="submit" class="btn btn-outline-primary" >Add</button>
+          <div class="col">
+            <label class="col-form-label">
+             <button type="submit" class="btn btn-outline-primary shadow bg-body rounded" >Add</button>
+            </label>
+          </div>
         </div>
 
       </div>
@@ -68,7 +72,7 @@
 
   <div class="row">
     <div class="container text-center">
-      <table class="table  table-striped table-hover caption-top" style="width: 100%">
+      <table class="table  table-striped table-hover caption-top shadow bg-body rounded" style="width: 100%">
         <caption>List of added users</caption>
         <thead class="table-dark">
         <tr>
@@ -84,7 +88,7 @@
           <td th:text="${employee.name}"></td>
           <td th:text="${employee.availability}"></td>
           <td>
-            <a  th:href="@{/home/delete-employee/__${employee.name}__}" class="btn btn-danger">Delete</a>
+            <a  th:href="@{/home/delete-employee/__${employee.name}__}" class="btn btn-danger shadow bg-body rounded">Delete</a>
           </td>
 
         </tr>
@@ -92,16 +96,19 @@
 
       </table>
         <div class="jumbotron">
-        <p class="lead">
-          Show information about generating algorithms
-        </p>
-        <p>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boe" aria-expanded="true" aria-controls="boe">
-            BOE
-          </button>
-          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#boa" aria-expanded="true" aria-controls="boa">
-            BOA
-          </button>
+          <p class="lead">
+            Show information about generating algorithms
+          </p>
+
+          <p>
+            <button class="btn btn-primary shadow bg-body rounded" type="button" data-toggle="collapse" data-target="#boe" aria-expanded="true" aria-controls="boe">
+              BOE
+            </button>
+            <button class="btn btn-primary shadow bg-body rounded" type="button" data-toggle="collapse" data-target="#boa" aria-expanded="true" aria-controls="boa">
+              BOA
+            </button>
+          </p>
+
           <div class="row">
             <div class="col">
               <div class="collapse multi-collapse" id="boe">
@@ -124,7 +131,7 @@
           </div>
         <p>
         <div class="dropdown">
-          <button class="btn btn-outline-dark dropdown-toggle btn-lg" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button class="btn btn-outline-dark dropdown-toggle btn-lg shadow bg-body rounded" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Generate schedule using:
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
