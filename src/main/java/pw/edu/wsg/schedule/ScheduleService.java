@@ -5,6 +5,7 @@ import pw.edu.wsg.employee.CreateEmployeeRequest;
 import pw.edu.wsg.employee.Employee;
 import pw.edu.wsg.employee.EmployeeRepository;
 import pw.edu.wsg.employee.EmployeeService;
+import pw.edu.wsg.schedule.algorithms.BOE;
 
 @Service
 public class ScheduleService {
@@ -34,5 +35,12 @@ public class ScheduleService {
 
         }
 
+    }
+
+    public Schedule generateSchedule(Schedule schedule){
+        BOE boe = new BOE(schedule);
+        Schedule generatedSchedule = boe.generateSchedule();
+
+        return generatedSchedule;
     }
 }

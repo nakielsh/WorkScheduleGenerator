@@ -11,6 +11,7 @@ import pw.edu.wsg.registration.RegistrationService;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -71,6 +72,7 @@ public class ScheduleController {
             }
 
             employeeList.add(addedEmployee);
+            schedule1.addToEmployeeList(addedEmployee);
             LOG.info(format("Employee : %s", addedEmployee));
             scheduleService.addEmployee(addedEmployee);
             model.addAttribute("notification",
@@ -81,8 +83,6 @@ public class ScheduleController {
                 model.addAttribute("isAdded", true);
             }
             model.addAttribute("name", addedEmployee.getName());
-
-
         }
 
         LOG.info(format("Added Schedule : %s", schedule1));
@@ -129,6 +129,18 @@ public class ScheduleController {
 
 
         return "redirect:/home/post-delete-add";
+    }
+
+    @GetMapping("/generated/based-on-equality")
+    public String showBOESchedule(Model model){
+        Schedule generatedSchedule = scheduleService.generateSchedule(schedule1);
+        Map<Integer, Employee> map = generatedSchedule.getDictionary();
+        List<Employee> employeeList = generatedSchedule.getEmployeeList();
+
+        model.addAttribute("map", map);
+        model.addAttribute("employeeList", employeeList);
+
+        return "schedule-view";
     }
 
 

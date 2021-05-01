@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:style="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>WSG App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
+          rel="stylesheet"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="#">
+        <img src="https://i.imgur.com/QbLHnon.png" width="100" height="30" class="d-inline-block align-top" alt="">
+    </a>
+</nav>
+
+<div class="jumbotron jumbotron-fluid ">
+    <div class="jumbotron jumbotron-fluid container text-center">
+
+        <div>
+            <h1 class="display-4">Add another employee to the schedule</h1>
+            <p>Type name and select available days for the employee</p>
+            <hr class="my-4">
+        </div>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="container text-center">
+        <table class="table  table-bordered table-striped table-hover caption-top shadow bg-body rounded" style="width: auto">
+            <caption>List of added users</caption>
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th th:each="day : ${map}" scope="col" th:text="${day.key}"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee :${employeeList}">
+                <td th:text="${employee.name}"></td>
+                <td th:each="day : ${map}" >
+                    <a th:if="${day.value.name == employee.name}">x</a>
+                    <a th:unless="${day.value.name == employee.name}">-</a>
+                </td>
+
+
+            </tr>
+            </tbody>
+
+        </table>
+
+        <table class="table  table-striped table-hover caption-top shadow bg-body rounded" style="width: 100%">
+            <caption>List of added users</caption>
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Availability</th>
+                <th scope="col">Delete</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee :${employeeList}">
+                <th scope="row" th:text="${employeeStat.index+1}"></th>
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.availability}"></td>
+                <td>
+                    <a th:href="@{/home/delete-employee/__${employee.name}__}"
+                       class="btn btn-danger shadow bg-body rounded">Delete</a>
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
+
+
+
+    </div>
+</div>
+
+</body>

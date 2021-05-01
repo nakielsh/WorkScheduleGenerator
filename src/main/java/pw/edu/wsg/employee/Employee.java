@@ -46,6 +46,11 @@ public class Employee implements Serializable {
         this.app_user_id = app_user_id;
     }
 
+    public Employee(String name, @Nullable List<Integer> availability) {
+        this.name = name;
+        this.availability = availability;
+    }
+
     public String getName() {
         return name;
     }
@@ -96,6 +101,10 @@ public class Employee implements Serializable {
 
     public void setVolumeFactor(Double volumeFactor) {
         this.volumeFactor = volumeFactor;
+    }
+
+    public void decrementDaysLeft(){
+        this.daysLeft -= 1;
     }
 
     @Override
