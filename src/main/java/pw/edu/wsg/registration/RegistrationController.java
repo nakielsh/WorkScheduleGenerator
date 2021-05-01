@@ -26,13 +26,13 @@ public class RegistrationController {
     }
 
     @GetMapping("")
-    public  String showRegistrationForm( Model model){
+    public String showRegistrationForm(Model model) {
         model.addAttribute("app_user", new AppUser());
         return "registration-form";
     }
 
     @PostMapping("/success")
-    public String processRegistration(@Validated AppUser app_user, RedirectAttributes redirectAttributes){
+    public String processRegistration(@Validated AppUser app_user, RedirectAttributes redirectAttributes) {
 
         try {
             appUserRepositoryService.signUpUser(app_user);

@@ -1,7 +1,6 @@
 package pw.edu.wsg.appuser;
 
 
-
 import com.sun.istack.NotNull;
 
 import org.springframework.security.core.GrantedAuthority;

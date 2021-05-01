@@ -14,7 +14,7 @@ public class RegistrationService {
         this.appUserRepositoryService = appUserRepositoryService;
     }
 
-    public String register1(AppUser appUser){
+    public String register1(AppUser appUser) {
         return appUserRepositoryService.signUpUser(appUser);
     }
 

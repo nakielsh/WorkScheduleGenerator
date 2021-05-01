@@ -18,19 +18,19 @@ public class ScheduleService {
         this.employeeService = employeeService;
     }
 
-    public Object addEmployee(Employee employee){
+    public Object addEmployee(Employee employee) {
         boolean employeeExists = !employeeRepository
                 .findByName(employee.getName()).isEmpty();
         Long id;
 
         if (!employeeExists) {
-             id = employeeService.createEmployee(new CreateEmployeeRequest(employee.getName(), employee.getAvailability()));
+            id = employeeService.createEmployee(new CreateEmployeeRequest(employee.getName(), employee.getAvailability()));
             return employeeService.getEmployee(id);
         } else {
             Employee previousEmployee = employeeRepository.findByName(employee.getName()).get(0);
             previousEmployee.setAvailability(employee.getAvailability());
 
-           return previousEmployee;
+            return previousEmployee;
 
         }
 

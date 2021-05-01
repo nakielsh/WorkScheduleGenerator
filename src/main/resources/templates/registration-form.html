@@ -1,93 +1,97 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" >
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>WSG Registration</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-          crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-          crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>WSG Registration</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
 
 </head>
-  <body>
-  <nav class="navbar navbar-light bg-light sticky-top">
+<body>
+<nav class="navbar navbar-light bg-light sticky-top">
     <a class="navbar-brand" href="#">
-      <img src="https://i.imgur.com/QbLHnon.png" width="100" height="30" class="d-inline-block align-top" alt="">
+        <img src="https://i.imgur.com/QbLHnon.png" width="100" height="30" class="d-inline-block align-top" alt="">
     </a>
-  </nav>
+</nav>
 
-  <div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid">
     <div class="container text-center">
-      <div>
-        <h1>Please Register</h1>
-      </div>
-
-      <form method="post" th:action="@{/registration/success}"  th:object="${app_user}">
-
-      <div>
-
-        <div class="form-group row">
-          <div class="col">
-            <label class="col-form-label">
-              <input type="text" class="form-control shadow bg-body rounded" id="firstName" placeholder="First Name" th:value="*{firstName}" th:field="*{firstName}" required
-                    minlength="2" maxlength="15" >
-            </label>
-          </div>
+        <div>
+            <h1>Please Register</h1>
         </div>
 
-        <div class="form-group row">
-          <div class="col">
-            <label class="col-form-label">
-              <input type="text" class="form-control shadow bg-body rounded" placeholder="Last Name" th:field="*{lastName}" required
-                     minlength="2" maxlength="15" >
-            </label>
-          </div>
-        </div>
+        <form method="post" th:action="@{/registration/success}" th:object="${app_user}">
 
-        <div class="form-group row">
-          <div class="col">
-            <label class="col-form-label">
-              <input type="text" class="form-control shadow bg-body rounded" placeholder="username" th:field="*{username}" required
-                     minlength="2" maxlength="20">
-              <div th:if="${#request.getParameter('failed')}" class="alert alert-danger shadow bg-body rounded col-form-label-sm" role="alert">
-                Username already taken
-              </div>
-            </label>
+            <div>
+
+                <div class="form-group row">
+                    <div class="col">
+                        <label class="col-form-label">
+                            <input type="text" class="form-control shadow bg-body rounded" id="firstName"
+                                   placeholder="First Name" th:value="*{firstName}" th:field="*{firstName}" required
+                                   minlength="2" maxlength="15">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col">
+                        <label class="col-form-label">
+                            <input type="text" class="form-control shadow bg-body rounded" placeholder="Last Name"
+                                   th:field="*{lastName}" required
+                                   minlength="2" maxlength="15">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col">
+                        <label class="col-form-label">
+                            <input type="text" class="form-control shadow bg-body rounded" placeholder="username"
+                                   th:field="*{username}" required
+                                   minlength="2" maxlength="20">
+                            <div th:if="${#request.getParameter('failed')}"
+                                 class="alert alert-danger shadow bg-body rounded col-form-label-sm" role="alert">
+                                Username already taken
+                            </div>
+                        </label>
 
 
+                    </div>
+                </div>
 
-          </div>
-        </div>
+                <div class="form-group row">
+                    <div class="col">
+                        <label class="col-form-label">
+                            <input type="password" class="form-control shadow bg-body rounded" placeholder="password"
+                                   th:field="*{password}" required
+                                   minlength="5" maxlength="100">
+                        </label>
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Must be 5-100 characters long, contain letters and numbers.
+                        </small>
+                    </div>
+                </div>
 
-        <div class="form-group row">
-          <div class="col">
-            <label class="col-form-label">
-              <input type="password" class="form-control shadow bg-body rounded" placeholder="password" th:field="*{password}" required
-                     minlength="5" maxlength="100">
-            </label>
-            <small id="passwordHelpBlock" class="form-text text-muted">
-              Must be 5-100 characters long, contain letters and numbers.
-            </small>
-          </div>
-        </div>
+                <label class="col-3">
+                    <button type="submit" class="col btn btn-outline-primary shadow bg-body rounded">Sign Up</button>
+                </label>
 
-        <label class="col-3">
-          <button type="submit" class="col btn btn-outline-primary shadow bg-body rounded" >Sign Up</button>
-        </label>
+                <p>
+                    Already have an account? <a th:href="@{/login}" class="link-primary">Log in</a>
+                </p>
 
-        <p>
-          Already have an account? <a th:href="@{/login}" class="link-primary">Log in</a>
-        </p>
-
-      </div>
-      </form>
+            </div>
+        </form>
 
     </div>
-  </div>
-  </body>
+</div>
+</body>
 </html>

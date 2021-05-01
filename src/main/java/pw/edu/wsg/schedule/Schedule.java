@@ -20,8 +20,8 @@ public class Schedule {
     public Schedule() {
     }
 
-    public void setDaysInMonth(){
-        YearMonth yearMonth = YearMonth.of(getYear(),getMonth());
+    public void setDaysInMonth() {
+        YearMonth yearMonth = YearMonth.of(getYear(), getMonth());
         this.daysInMonth = yearMonth.lengthOfMonth();
     }
 
@@ -57,10 +57,10 @@ public class Schedule {
         return employeeList;
     }
 
-    public int addToEmployeeList(Employee employee){
-        if (employeeList.contains(employee)){
+    public int addToEmployeeList(Employee employee) {
+        if (employeeList.contains(employee)) {
             return 0;
-        }else {
+        } else {
             employeeList.add(employee);
             return 1;
         }

@@ -1,97 +1,101 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" >
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>WSG App</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-          crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-          crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>WSG App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
+          rel="stylesheet"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
 
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light sticky-top">
-  <a class="navbar-brand" href="#">
-    <img src="https://i.imgur.com/QbLHnon.png" width="100" height="30" class="d-inline-block align-top" alt="">
-  </a>
+    <a class="navbar-brand" href="#">
+        <img src="https://i.imgur.com/QbLHnon.png" width="100" height="30" class="d-inline-block align-top" alt="">
+    </a>
 </nav>
 
 <div class="jumbotron jumbotron-fluid">
-  <div class="jumbotron jumbotron-fluid container text-center">
-    <div>
-      <h1 class="display-4">Add first employee to the schedule</h1>
-      <p>Type name and select available days for the employee</p>
-      <hr class="my-4">
-    </div>
-
-    <form method="post" th:action="@{/home/add-employees}"  th:object="${addedEmployee}">
-
-      <div>
-
-        <div class="form-group row">
-          <div class="col">
-            <label class="col-form-label form-control-lg ">
-              <input type="text" class="form-control shadow bg-body rounded" id="name" placeholder="Name"  th:field="*{name}" required
-                     minlength="1" maxlength="25" >
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group row form-control-lg">
-          <div class="col">
-            <label class="col-form-label">
-              <input  class="form-control shadow bg-body rounded" type="text" id="datepicker_day" placeholder="Availability" readonly="readonly" th:field="*{availability}" required>
-            </label>
-          </div>
-        </div>
-
+    <div class="jumbotron jumbotron-fluid container text-center">
         <div>
-          <div class="col">
-            <label class="col-form-label">
-              <button type="submit" class="btn btn-outline-primary shadow bg-body rounded" >Add</button>
-            </label>
-          </div>
+            <h1 class="display-4">Add first employee to the schedule</h1>
+            <p>Type name and select available days for the employee</p>
+            <hr class="my-4">
         </div>
 
-      </div>
-    </form>
+        <form method="post" th:action="@{/home/add-employees}" th:object="${addedEmployee}">
 
-  </div>
+            <div>
+
+                <div class="form-group row">
+                    <div class="col">
+                        <label class="col-form-label form-control-lg ">
+                            <input type="text" class="form-control shadow bg-body rounded" id="name" placeholder="Name"
+                                   th:field="*{name}" required
+                                   minlength="1" maxlength="25">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group row form-control-lg">
+                    <div class="col">
+                        <label class="col-form-label">
+                            <input class="form-control shadow bg-body rounded" type="text" id="datepicker_day"
+                                   placeholder="Availability" readonly="readonly" th:field="*{availability}" required
+                                   minlength="1">
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col">
+                        <label class="col-form-label">
+                            <button type="submit" class="btn btn-outline-primary shadow bg-body rounded">Add</button>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
 </div>
 
 </body>
 <script th:inline="javascript" type="text/javascript">
-  /*<![CDATA[*/
+    /*<![CDATA[*/
 
-  var year = parseInt(/*[[${pickedYear}]]*/ 'default');
-  var month = parseInt(/*[[${pickedMonth}]]*/ 'default');
-  var days = parseInt(/*[[${days}]]*/ 'default');
-  var beginningDate = new Date(year, month-1,1);
-  var lastDate = new Date(year, month-1,days);
+    var year = parseInt(/*[[${pickedYear}]]*/ 'default');
+    var month = parseInt(/*[[${pickedMonth}]]*/ 'default');
+    var days = parseInt(/*[[${days}]]*/ 'default');
+    var beginningDate = new Date(year, month - 1, 1);
+    var lastDate = new Date(year, month - 1, days);
 
-  $("#datepicker_day").datepicker( {
-    multidate: true,
-    format: " dd",
-    viewMode: "days",
-    minViewMode: "days",
-    maxViewMode: "days",
-    keyboardNavigation: "false",
-    startDate: beginningDate,
-    endDate: lastDate,
-    disableTouchKeyboard: "true"
-  });
-  /*]]>*/
+    $("#datepicker_day").datepicker({
+        multidate: true,
+        format: " dd",
+        viewMode: "days",
+        minViewMode: "days",
+        maxViewMode: "days",
+        keyboardNavigation: "false",
+        startDate: beginningDate,
+        endDate: lastDate,
+        disableTouchKeyboard: "true"
+    });
+    /*]]>*/
 </script>
 
 

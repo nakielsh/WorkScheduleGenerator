@@ -33,13 +33,13 @@ public class EmployeeRepositoryService implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEmployees(){
+    public List<Employee> getEmployees() {
 
         return employeeRepository.findAll();
     }
 
     @Override
-    public Employee getEmployee(Long id){
+    public Employee getEmployee(Long id) {
         return employeeRepository.getOne(id);
     }
 

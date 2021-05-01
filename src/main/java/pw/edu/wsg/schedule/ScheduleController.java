@@ -33,13 +33,13 @@ public class ScheduleController {
 
 
     @GetMapping("")
-    public String showHomepage(Model model){
+    public String showHomepage(Model model) {
         model.addAttribute("schedule", new Schedule());
         return "home-page";
     }
 
     @PostMapping("/add-employee")
-    public String addEmployee(Schedule schedule, Model model){
+    public String addEmployee(Schedule schedule, Model model) {
         schedule.setDaysInMonth();
         LOG.info(format("Schedule : %s", schedule));
         int month = schedule.getMonth();
@@ -54,18 +54,18 @@ public class ScheduleController {
     }
 
     @PostMapping("/add-employees")
-    public String addEmployees(Employee addedEmployee, Model model){
+    public String addEmployees(Employee addedEmployee, Model model) {
         LOG.info(format("Schedule : %s", schedule1));
         List<Employee> employeeList = schedule1.getEmployeeList();
         Employee employeeToRemove = null;
 
-        if(addedEmployee != null){
-            for( Employee employee : employeeList){
-                if(employee.getName().equals(addedEmployee.getName())){
+        if (addedEmployee != null) {
+            for (Employee employee : employeeList) {
+                if (employee.getName().equals(addedEmployee.getName())) {
                     employeeToRemove = employee;
                 }
             }
-            if(employeeToRemove != null){
+            if (employeeToRemove != null) {
                 employeeList.remove(employeeToRemove);
                 model.addAttribute("isEdited", true);
             }
@@ -77,7 +77,7 @@ public class ScheduleController {
                     String.format("Contractor \"%s\" successfully saved", addedEmployee.getName()));
             model.addAttribute("action", "save");
 
-            if(model.getAttribute("isEdited") == null){
+            if (model.getAttribute("isEdited") == null) {
                 model.addAttribute("isAdded", true);
             }
             model.addAttribute("name", addedEmployee.getName());
@@ -98,7 +98,7 @@ public class ScheduleController {
     }
 
     @GetMapping("/post-delete-add")
-    public String addEmployeesAfterDelete(Model model ){
+    public String addEmployeesAfterDelete(Model model) {
         LOG.info(format("Schedule : %s", schedule1));
         List<Employee> employeeList = schedule1.getEmployeeList();
 
@@ -117,9 +117,9 @@ public class ScheduleController {
 
 
     @GetMapping("/delete-employee/{name}")
-    public String deleteEmployee(@PathVariable(name = "name") String deletedEmployeeName, RedirectAttributes redirectAttributes){
+    public String deleteEmployee(@PathVariable(name = "name") String deletedEmployeeName, RedirectAttributes redirectAttributes) {
 
-        if(!schedule1.getEmployeeList().isEmpty()){
+        if (!schedule1.getEmployeeList().isEmpty()) {
             schedule1.getEmployeeList().removeIf(emp -> emp.getName().equals(deletedEmployeeName));
         }
 

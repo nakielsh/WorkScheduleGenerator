@@ -55,11 +55,11 @@ public class AppUserRepositoryService implements AppUserService {
                         String.format(USER_NOT_FOUND_MSG, username)));
     }
 
-    public String signUpUser(AppUser appUser){
+    public String signUpUser(AppUser appUser) {
         boolean userExists = appUserRepository
                 .findByUsername(appUser.getUsername())
                 .isPresent();
-        if(userExists){
+        if (userExists) {
             throw new IllegalStateException("Username already taken");
         }
 

@@ -60,7 +60,7 @@ public class Employee implements Serializable {
     }
 
     public void setAvailability(@Nullable List<Integer> availability) {
-        if(availability != null){
+        if (availability != null) {
             Collections.sort(availability);
         }
         this.availability = availability;

@@ -2,24 +2,24 @@ package pw.edu.wsg.appuser;
 
 
 import com.sun.istack.NotNull;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModelProperty;
 
 
 public class CreateAppUserRequest {
 
-    @ApiModelProperty(example = "Jan", required = true)
+//    @ApiModelProperty(example = "Jan", required = true)
     @NotNull
     private String firstName;
 
-    @ApiModelProperty(example = "Kowalski", required = true)
+//    @ApiModelProperty(example = "Kowalski", required = true)
     @NotNull
     private String lastName;
 
-    @ApiModelProperty(example = "********", required = true)
+//    @ApiModelProperty(example = "********", required = true)
     @NotNull
     private String password;
 
-    @ApiModelProperty(example = "JanKowal", required = true)
+//    @ApiModelProperty(example = "JanKowal", required = true)
     @NotNull
     private String username;
 
@@ -65,7 +65,6 @@ public class CreateAppUserRequest {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 
     @Override

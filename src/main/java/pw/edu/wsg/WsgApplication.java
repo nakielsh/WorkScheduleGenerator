@@ -10,13 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 @SpringBootApplication
 public class WsgApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(WsgApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(WsgApplication.class, args);
+    }
 
 
 }

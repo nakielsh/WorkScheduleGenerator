@@ -1,24 +1,24 @@
 package pw.edu.wsg.registration;
 
 import com.sun.istack.NotNull;
-import io.swagger.annotations.ApiModelProperty;
+//import io.swagger.annotations.ApiModelProperty;
 import pw.edu.wsg.appuser.AppUserRole;
 
 public class RegistrationRequest {
 
-    @ApiModelProperty(example = "Jan", required = true)
+//    @ApiModelProperty(example = "Jan", required = true)
     @NotNull
     private String firstName;
 
-    @ApiModelProperty(example = "Kowalski", required = true)
+//    @ApiModelProperty(example = "Kowalski", required = true)
     @NotNull
     private String lastName;
 
-    @ApiModelProperty(example = "********", required = true)
+//    @ApiModelProperty(example = "********", required = true)
     @NotNull
     private String password;
 
-    @ApiModelProperty(example = "JanKowal", required = true)
+//    @ApiModelProperty(example = "JanKowal", required = true)
     @NotNull
     private String username;
 

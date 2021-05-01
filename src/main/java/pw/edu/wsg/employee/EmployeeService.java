@@ -8,6 +8,8 @@ import java.util.List;
 public interface EmployeeService {
 
     Long createEmployee(CreateEmployeeRequest request);
+
     public List<Employee> getEmployees();
+
     public Employee getEmployee(Long id);
 }

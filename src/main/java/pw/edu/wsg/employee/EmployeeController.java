@@ -21,13 +21,13 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public List<Employee> getEmployees(){
+    public List<Employee> getEmployees() {
         return employeeService.getEmployees();
     }
 
     @PostMapping("/add")
     @ResponseStatus(CREATED)
-    public int createEmployee( CreateEmployeeRequest request){
+    public int createEmployee(CreateEmployeeRequest request) {
         LOG.info(format("Request createEmployee started: {request: %s}", request));
 
         Long employeeId = employeeService.createEmployee(request);

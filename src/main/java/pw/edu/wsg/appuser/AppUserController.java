@@ -10,24 +10,24 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping(path = "api/v1/appuser")
-public class AppUserController{
+public class AppUserController {
 
-        private static final Logger LOG = Logger.getLogger(AppUserController.class.getName());
+    private static final Logger LOG = Logger.getLogger(AppUserController.class.getName());
 
-        private final AppUserService appUserService;
+    private final AppUserService appUserService;
 
     public AppUserController(AppUserService appUserService) {
         this.appUserService = appUserService;
     }
 
     @GetMapping
-    public List<AppUser> getAppUsers(){
+    public List<AppUser> getAppUsers() {
         return appUserService.getAppUsers();
     }
 
     @PostMapping("/add")
     @ResponseStatus(CREATED)
-    public int createAppUser(@RequestBody CreateAppUserRequest request){
+    public int createAppUser(@RequestBody CreateAppUserRequest request) {
         LOG.info(format("Request createAppUser started: {request: %s}", request));
 
         Long appUserId = appUserService.createAppUser(request);
