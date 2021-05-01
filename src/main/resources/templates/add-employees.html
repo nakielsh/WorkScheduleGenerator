@@ -110,8 +110,7 @@
                     <div class="col">
                         <label class="col-form-label form-control-lg">
                             <input class="form-control shadow bg-body rounded" type="text" id="datepicker_day"
-                                   placeholder="Availability" readonly="readonly" th:field="*{availability}" required
-                                   minlength="1">
+                                   placeholder="Availability" th:field="*{availability}" required>
                         </label>
                     </div>
                 </div>
@@ -160,16 +159,18 @@
             <p class="lead">
                 Show information about generating algorithms
             </p>
-
+            <hr class="my-4">
             <p>
-                <button class="btn btn-primary shadow bg-body rounded" type="button" data-toggle="collapse"
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button class="btn btn-outline-dark btn-lg shadow bg-body " type="button" data-toggle="collapse"
                         data-target="#boe" aria-expanded="true" aria-controls="boe">
                     BOE
                 </button>
-                <button class="btn btn-primary shadow bg-body rounded" type="button" data-toggle="collapse"
+                <button class="btn btn-outline-dark btn-lg shadow bg-body " type="button" data-toggle="collapse"
                         data-target="#boa" aria-expanded="true" aria-controls="boa">
                     BOA
                 </button>
+            </div>
             </p>
 
             <div class="row">
@@ -179,6 +180,10 @@
                             <p class="lead font-weight-bolder">BOE - Based On Equality</p>
                             <hr class="my-4">
                             Algorithm spares the work equally. Everyone has almost the same amount of working days.
+                            <hr class="my-4">
+                            <button type="button" class="btn btn-outline-dark shadow bg-body rounded" href="#">Generate
+                                schedule
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -189,22 +194,14 @@
                             <hr class="my-4">
                             Algorithm spares the work considering everyone's availability. The more you are available,
                             the more days you work.
+                            <hr class="my-4">
+                            <button type="button" class="btn btn-outline-dark shadow bg-body rounded" href="#">Generate
+                                schedule
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <hr class="my-4">
-
-            <p class="lead">
-                Generate schedule using:
-            </p>
-
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-dark btn-lg shadow bg-body " href="#">BOE</button>
-                <button type="button" class="btn btn-outline-dark btn-lg shadow bg-body " href="#">BOA</button>
-            </div>
-
         </div>
 
 
