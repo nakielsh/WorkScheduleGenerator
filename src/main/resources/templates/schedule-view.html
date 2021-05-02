@@ -36,7 +36,10 @@
 
         <div>
             <h1 class="display-4">Your Generated Schedule</h1>
-            <p>The schedule has been generated using BOE method</p>
+            <p>The schedule has been generated using BOE method for
+                <a th:text="${schedule.monthName}"class="font-weight-bold"> </a>
+                <a th:text="${schedule.year}" class="font-weight-bold"></a>
+            </p>
             <hr class="my-4">
         </div>
 

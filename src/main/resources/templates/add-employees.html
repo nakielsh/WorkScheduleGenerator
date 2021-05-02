@@ -88,6 +88,10 @@
         <div>
             <h1 class="display-4">Add another employee to the schedule</h1>
             <p>Type name and select available days for the employee</p>
+            <p class="font-weight-light">Creating schedule for
+                <a th:text="${schedule.monthName}"class="font-weight-bold"> </a>
+                <a th:text="${schedule.year}" class="font-weight-bold"></a>
+            </p>
             <hr class="my-4">
         </div>
 

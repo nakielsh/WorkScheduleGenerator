@@ -51,6 +51,8 @@ public class ScheduleController {
         model.addAttribute("days", days);
         model.addAttribute("addedEmployee", new Employee());
         this.schedule1 = schedule;
+        schedule1.setMonthName();
+        model.addAttribute("schedule",schedule1);
         return "add-employee";
     }
 
@@ -90,6 +92,7 @@ public class ScheduleController {
         model.addAttribute("employeeList", employeeList);
 
         model.addAttribute("pickedMonth", schedule1.getMonth());
+        model.addAttribute("schedule", schedule1);
         model.addAttribute("pickedYear", schedule1.getYear());
         model.addAttribute("days", schedule1.getDaysInMonth());
         model.addAttribute("addedEmployee", new Employee());
@@ -138,6 +141,7 @@ public class ScheduleController {
         List<Employee> employeeList = generatedSchedule.getEmployeeList();
 
         model.addAttribute("map", map);
+        model.addAttribute("schedule", schedule1);
         model.addAttribute("employeeList", employeeList);
 
         return "schedule-view";
