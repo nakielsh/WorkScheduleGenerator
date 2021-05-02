@@ -22,7 +22,8 @@ CREATE TABLE employee (
     name VARCHAR(30) NOT NULL,
     days_left INTEGER,
     volume_factor DECIMAL(10,2),
-    app_user_id BIGSERIAL NOT NULL
+    app_user_id BIGSERIAL NOT NULL,
+    num_of_working_days INTEGER
 );
 
 CREATE TABLE employee_availability (

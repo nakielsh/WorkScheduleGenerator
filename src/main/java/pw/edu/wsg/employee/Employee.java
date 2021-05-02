@@ -2,6 +2,7 @@ package pw.edu.wsg.employee;
 
 import com.sun.istack.NotNull;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -35,6 +36,9 @@ public class Employee implements Serializable {
 
     @Nullable
     private Double volumeFactor = 0.0;
+
+    @Nullable
+    private int numOfWorkingDays = 0;
 
     public Employee() {
     }
@@ -101,6 +105,14 @@ public class Employee implements Serializable {
 
     public void setVolumeFactor(Double volumeFactor) {
         this.volumeFactor = volumeFactor;
+    }
+
+    public void setNumOfWorkingDays(int numOfWorkingDays) {
+        this.numOfWorkingDays = numOfWorkingDays;
+    }
+
+    public int getNumOfWorkingDays() {
+        return numOfWorkingDays;
     }
 
     public void decrementDaysLeft() {
