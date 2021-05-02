@@ -110,6 +110,7 @@ public class ScheduleController {
 
         model.addAttribute("employeeList", employeeList);
 
+        model.addAttribute("schedule", schedule1);
         model.addAttribute("pickedMonth", schedule1.getMonth());
         model.addAttribute("pickedYear", schedule1.getYear());
         model.addAttribute("days", schedule1.getDaysInMonth());
@@ -136,7 +137,20 @@ public class ScheduleController {
 
     @GetMapping("/generated/based-on-equality")
     public String showBOESchedule(Model model){
-        Schedule generatedSchedule = scheduleService.generateSchedule(schedule1);
+        Schedule generatedSchedule = scheduleService.generateScheduleBOE(schedule1);
+        Map<Integer, Employee> map = generatedSchedule.getDictionary();
+        List<Employee> employeeList = generatedSchedule.getEmployeeList();
+
+        model.addAttribute("map", map);
+        model.addAttribute("schedule", schedule1);
+        model.addAttribute("employeeList", employeeList);
+
+        return "schedule-view";
+    }
+
+    @GetMapping("/generated/based-on-equality2")
+    public String showBOE2Schedule(Model model){
+        Schedule generatedSchedule = scheduleService.generateScheduleBOE2(schedule1);
         Map<Integer, Employee> map = generatedSchedule.getDictionary();
         List<Employee> employeeList = generatedSchedule.getEmployeeList();
 

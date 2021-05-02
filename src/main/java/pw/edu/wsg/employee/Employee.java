@@ -43,6 +43,10 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
+    public Employee(String name){
+        this.name = name;
+    }
+
 
     public Employee(String name, @Nullable List<Integer> availability, Long app_user_id) {
         this.name = name;

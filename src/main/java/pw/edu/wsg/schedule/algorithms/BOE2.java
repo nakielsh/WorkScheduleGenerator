@@ -1,5 +1,6 @@
 package pw.edu.wsg.schedule.algorithms;
 
+
 import pw.edu.wsg.employee.Employee;
 import pw.edu.wsg.schedule.Schedule;
 
@@ -7,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BOE {
+public class BOE2 {
 
     private final Schedule schedule;
     private int leastWantedDay;
@@ -17,7 +18,7 @@ public class BOE {
     private int maxWorkingDays;
     private int daysWithoutPeople = 0;
 
-    public BOE(Schedule schedule) {
+    public BOE2(Schedule schedule) {
         this.schedule = schedule;
     }
 
@@ -44,12 +45,9 @@ public class BOE {
         }
 
         for (Employee employee : schedule.getEmployeeList()) {
-            fillEmptyDays();
             makeScheduleEqual();
+            fillEmptyDays();
         }
-
-
-
         System.out.println("\tAfter optimalization:");
         for (Employee employee : schedule.getEmployeeList()) {
             System.out.println(employee.getName() + " days left: " + employee.getDaysLeft());
@@ -68,15 +66,36 @@ public class BOE {
         int max = 0;
         int min = 40;
         for (Employee employee : schedule.getEmployeeList()) {
-            if (employee.getDaysLeft() < min) {
-                min = employee.getDaysLeft();
-                empl_minDaysLeft = employee;
-            }
-            if (employee.getDaysLeft() > max) {
-                max = employee.getDaysLeft();
-                empl_maxDaysLeft = employee;
+            if (employee.getDaysLeft() != null) {
+                if (employee.getDaysLeft() < min) {
+                    min = employee.getDaysLeft();
+                    empl_minDaysLeft = employee;
+                }
+                if (employee.getDaysLeft() > max) {
+                    max = employee.getDaysLeft();
+                    empl_maxDaysLeft = employee;
+                }
             }
         }
+
+        assert empl_maxDaysLeft.getAvailability() != null;
+        for (int day_max : empl_maxDaysLeft.getAvailability()) {
+            assert empl_minDaysLeft.getAvailability() != null;
+            for (int day_min : empl_minDaysLeft.getAvailability()) {
+                if (day_max == day_min) {
+                    if (empl_maxDaysLeft.getDaysLeft() != null && empl_minDaysLeft.getDaysLeft() != null){
+                        if (empl_maxDaysLeft.getDaysLeft() >= empl_minDaysLeft.getDaysLeft()) {
+                            if (realSchedule.get(day_max).getName().equals(empl_minDaysLeft.getName())) {
+                                realSchedule.replace(day_max, empl_maxDaysLeft);
+                                decrementDaysLeft(empl_maxDaysLeft);
+                                incrementDaysLeft(empl_minDaysLeft);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         System.out.println("Most days left: " + empl_maxDaysLeft.getName());
         System.out.println("Least days left: " + empl_minDaysLeft.getName());
 
@@ -89,11 +108,9 @@ public class BOE {
                         assert employee2.getAvailability() != null;
                         for (int day_min : employee2.getAvailability()) {
                             if (day_max == day_min) {
-                                if (employee1.getDaysLeft() != null && employee2.getDaysLeft() != null){
+                                if (employee1.getDaysLeft() != null && employee2.getDaysLeft() != null) {
                                     if (employee1.getDaysLeft() >= employee2.getDaysLeft()) {
                                         if (realSchedule.get(day_max) != null && !employee2.getName().equals("")){
-                                            System.out.println("schedule: " + realSchedule);
-                                            System.out.println("Employee: " + employee2);
                                             if (realSchedule.get(day_max).getName().equals(employee2.getName())) {
                                                 realSchedule.replace(day_max, employee1);
                                                 decrementDaysLeft(employee1);
@@ -108,20 +125,6 @@ public class BOE {
                 }
             }
         }
-//        for (int day_max : empl_maxDaysLeft.getAvailability()) {
-//            for (int day_min : empl_minDaysLeft.getAvailability()) {
-//                if (day_max == day_min) {
-//                    if (empl_maxDaysLeft.getDaysLeft() >= empl_minDaysLeft.getDaysLeft()) {
-//                        if (realSchedule.get(day_max).getName().equals(empl_minDaysLeft.getName())) {
-//                            realSchedule.replace(day_max, empl_maxDaysLeft);
-//                            decrementDaysLeft(empl_maxDaysLeft);
-//                            incrementDaysLeft(empl_minDaysLeft);
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
     }
 
     public void createMap() {
@@ -233,7 +236,7 @@ public class BOE {
             }
         }
     }
-    
+
     public void setNumberOfDays() {
         for (Employee employee : schedule.getEmployeeList()){
             employee.setNumOfWorkingDays(maxWorkingDays - employee.getDaysLeft());
