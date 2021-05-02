@@ -103,8 +103,12 @@ public class Employee implements Serializable {
         this.volumeFactor = volumeFactor;
     }
 
-    public void decrementDaysLeft(){
+    public void decrementDaysLeft() {
         this.daysLeft -= 1;
+    }
+
+    public void incrementDaysLeft() {
+        this.daysLeft += 1;
     }
 
     @Override

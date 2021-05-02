@@ -52,43 +52,73 @@ class BOETest {
         avLiska.add(15);
         avLiska.add(18);
 
-        List<Integer> avHuberta = new ArrayList<>();
-        avLiska.add(1);
-        avLiska.add(2);
-        avLiska.add(4);
-        avLiska.add(6);
-        avLiska.add(11);
-        avLiska.add(12);
-        avLiska.add(15);
-        avLiska.add(17);
-        avLiska.add(19);
-        avLiska.add(20);
+        List<Integer> avOlka = new ArrayList<>();
+        avOlka.add(1);
+        avOlka.add(2);
+        avOlka.add(4);
+        avOlka.add(6);
+        avOlka.add(11);
+        avOlka.add(12);
+        avOlka.add(15);
+        avOlka.add(17);
+        avOlka.add(19);
+        avOlka.add(20);
 
         List<Integer> avMarty = new ArrayList<>();
-        avLiska.add(2);
-        avLiska.add(3);
-        avLiska.add(5);
-        avLiska.add(8);
-        avLiska.add(10);
-        avLiska.add(16);
-        avLiska.add(19);
-        avLiska.add(21);
-        avLiska.add(22);
-        avLiska.add(25);
+        avMarty.add(2);
+        avMarty.add(3);
+        avMarty.add(5);
+        avMarty.add(8);
+        avMarty.add(10);
+        avMarty.add(16);
+        avMarty.add(19);
+        avMarty.add(21);
+        avMarty.add(22);
+        avMarty.add(25);
 
-        Employee lisek = new Employee("Lisek", avLiska );
+        Employee lisek = new Employee("Lisek", avLiska);
         schedule.addToEmployeeList(lisek);
 
-        Employee Olek = new Employee("Olek", avHuberta );
+        Employee Olek = new Employee("Olek", avOlka);
         schedule.addToEmployeeList(Olek);
 
-        Employee Marta = new Employee("Marta", avMarty );
+        Employee Marta = new Employee("Marta", avMarty);
         schedule.addToEmployeeList(Marta);
 
         //when
         BOE boe = new BOE(schedule);
         Schedule generatedSchedule = boe.generateSchedule();
         System.out.print(generatedSchedule.getDictionary());
+        System.out.println("\ngenerated schedule" + generatedSchedule.getEmployeeList().toString());
+        System.out.println("previous schedule" + schedule.getEmployeeList().toString());
+        int nLisek = 0;
+        int nOlek = 0;
+        int nMarta = 0;
+        int none = 0;
+
+        for (Employee employee : generatedSchedule.getDictionary().values()) {
+            if (employee.getName() != null) {
+                if (employee.getName().equals("Lisek")) {
+                    nLisek += 1;
+                } else if (employee.getName().equals("Olek")) {
+                    nOlek += 1;
+                } else if (employee.getName().equals("Marta")) {
+                    nMarta += 1;
+                }
+            } else {
+                none += 1;
+            }
+
+        }
+
+        System.out.println("\nLisek: " + nLisek);
+        System.out.println("Olek: " + nOlek);
+        System.out.println("Marta: " + nMarta);
+        System.out.println("None: " + none);
+
+        System.out.println("Last days: ");
+        System.out.println(generatedSchedule.getEmployeeList().toString());
+
 
         //then
     }
