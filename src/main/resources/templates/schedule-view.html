@@ -35,8 +35,8 @@
     <div class="jumbotron jumbotron-fluid container text-center">
 
         <div>
-            <h1 class="display-4">Add another employee to the schedule</h1>
-            <p>Type name and select available days for the employee</p>
+            <h1 class="display-4">Your Generated Schedule</h1>
+            <p>The schedule has been generated using BOE method</p>
             <hr class="my-4">
         </div>
 
@@ -48,7 +48,7 @@
     <div class="container-fluid text-center table-responsive">
         <table class="table mx-auto table-bordered table-striped table-hover caption-top shadow bg-body rounded"
                style="width: auto">
-            <caption>List of added users</caption>
+            <caption>Work Schedule</caption>
             <thead class="table-dark">
             <tr>
                 <th scope="col">Name</th>
@@ -62,14 +62,13 @@
                     <a th:if="${day.value.name == employee.name}">x</a>
                     <a th:unless="${day.value.name == employee.name}">-</a>
                 </td>
-
-
             </tr>
             </tbody>
 
         </table>
     </div>
 </div>
+<hr class="my-4">
 
 <div class="row">
     <div class="container text-center table-responsive">
@@ -80,7 +79,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Availability</th>
-                <th scope="col">Delete</th>
+<!--                <th scope="col">Delete</th>-->
 
             </tr>
             </thead>
@@ -89,15 +88,75 @@
                 <th scope="row" th:text="${employeeStat.index+1}"></th>
                 <td th:text="${employee.name}"></td>
                 <td th:text="${employee.availability}"></td>
-                <td>
-                    <a th:href="@{/home/delete-employee/__${employee.name}__}"
-                       class="btn btn-danger shadow bg-body rounded">Delete</a>
-                </td>
+<!--                <td>-->
+<!--                    <a th:href="@{/home/delete-employee/__${employee.name}__}"-->
+<!--                       class="btn btn-danger shadow bg-body rounded">Delete</a>-->
+<!--                </td>-->
 
             </tr>
             </tbody>
 
         </table>
+
+        <div class="jumbotron">
+
+            <p class="lead">
+                Go back to adding employees
+                <p>
+                    <a th:href="@{/home/post-delete-add}"
+                       class="btn btn-outline-dark shadow bg-body rounded" >Back to adding employees</a>
+                </p>
+                <hr class="my-4">
+            </p>
+
+            <p class="lead">
+                Show information about generating algorithms
+            </p>
+            <hr class="my-4">
+            <p>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button class="btn btn-outline-dark btn-lg shadow bg-body " type="button" data-toggle="collapse"
+                        data-target="#boe" aria-expanded="true" aria-controls="boe">
+                    BOE
+                </button>
+                <button class="btn btn-outline-dark btn-lg shadow bg-body " type="button" data-toggle="collapse"
+                        data-target="#boa" aria-expanded="true" aria-controls="boa">
+                    BOA
+                </button>
+            </div>
+            </p>
+
+            <div class="row">
+                <div class="col">
+                    <div class="collapse multi-collapse" id="boe">
+                        <div class="card card-body font-weight-light">
+                            <p class="lead font-weight-bolder">BOE - Based On Equality</p>
+                            <hr class="my-4">
+                            Algorithm spares the work equally. Everyone has almost the same amount of working days.
+                            <hr class="my-4">
+<!--                            <a  class="btn btn-outline-dark shadow bg-body rounded" th:href="@{/home/generated/based-on-equality}">Generate-->
+<!--                                schedule-->
+<!--                            </a>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="collapse multi-collapse" id="boa">
+                        <div class="card card-body font-weight-light">
+                            <p class="lead font-weight-bolder">BOA - Based On Availability</p>
+                            <hr class="my-4">
+                            Algorithm spares the work considering everyone's availability. The more you are available,
+                            the more days you work.
+                            <hr class="my-4">
+                            <a  class="btn btn-outline-dark shadow bg-body rounded" th:href="@{/home/generated/based-on-equality}">Generate
+                                schedule
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
