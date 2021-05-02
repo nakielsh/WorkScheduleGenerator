@@ -77,25 +77,13 @@ public class BOE {
         System.out.println("Most days left: " + empl_maxDaysLeft.getName());
         System.out.println("Least days left: " + empl_minDaysLeft.getName());
 
-//        for (int day_max : empl_maxDaysLeft.getAvailability()) {
-//            for (int day_min : empl_minDaysLeft.getAvailability()) {
-//                if (day_max == day_min) {
-//                    if (empl_maxDaysLeft.getDaysLeft() >= empl_minDaysLeft.getDaysLeft()) {
-//                        if (realSchedule.get(day_max).getName().equals(empl_minDaysLeft.getName())) {
-//                            realSchedule.replace(day_max, empl_maxDaysLeft);
-//                            decrementDaysLeft(empl_maxDaysLeft);
-//                            incrementDaysLeft(empl_minDaysLeft);
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
 
         for (Employee employee1 : schedule.getEmployeeList()){
             for (Employee employee2 : schedule.getEmployeeList()){
                 if (employee1 != employee2){
+                    assert employee1.getAvailability() != null;
                     for (int day_max : employee1.getAvailability()) {
+                        assert employee2.getAvailability() != null;
                         for (int day_min : employee2.getAvailability()) {
                             if (day_max == day_min) {
                                 if (employee1.getDaysLeft() >= employee2.getDaysLeft()) {
