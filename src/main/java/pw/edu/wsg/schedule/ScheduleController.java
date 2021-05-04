@@ -145,7 +145,7 @@ public class ScheduleController {
         model.addAttribute("map", map);
         model.addAttribute("schedule", schedule1);
         model.addAttribute("employeeList", employeeList);
-        model.addAttribute("empty-map", emptyDays);
+        model.addAttribute("emptymap", emptyDays);
 
         return "schedule-view";
     }
@@ -161,8 +161,6 @@ public class ScheduleController {
         model.addAttribute("schedule", schedule1);
         model.addAttribute("employeeList", employeeList);
         model.addAttribute("emptymap", emptyDays);
-        model.addAttribute("empty-map", emptyDays);
-        System.out.println(emptyDays);
 
         return "schedule-view";
     }

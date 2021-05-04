@@ -119,7 +119,7 @@
                 <th  scope="row"   th:text="${day.key}" ></th>
                 <th scope="row"  th:inline="text">
                     <a th:if="${day.value} != null" class="font-weight-bold text-wrap text-secondary" th:each="empl, iterStat : ${day.value}" th:text="${!iterStat.last}? ${empl} + ', ' : ${empl}"></a>
-                    <a class="font-weight-bold" th:if="${day.value} == null"> No possible Employee </a>
+                    <a class="font-weight-bold text-secondary" th:if="${day.value} == null"> No possible Employee </a>
                 </th>
             </tr>
             </tbody>
