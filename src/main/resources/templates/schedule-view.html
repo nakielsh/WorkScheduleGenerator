@@ -84,21 +84,43 @@
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Availability</th>
+
 <!--                <th scope="col">Delete</th>-->
-
-
             </tr>
             </thead>
             <tbody>
             <tr th:each="employee :${employeeList}">
                 <th scope="row" th:text="${employeeStat.index+1}"></th>
-                <td th:text="${employee.name}"></td>
-                <td th:text="${employee.availability}"></td>
+                <td class="font-weight-bold text-dark" th:text="${employee.name}"></td>
+                <td>
+                    <a class="font-weight-bold text-secondary" th:each="day, iterStat : ${employee.availability}" th:text="${!iterStat.last} ? ${day} + ', ' : ${day} " ></a>
+                </td>
 <!--                <td>-->
 <!--                    <a th:href="@{/home/delete-employee/__${employee.name}__}"-->
 <!--                       class="btn btn-danger shadow bg-body rounded">Delete</a>-->
 <!--                </td>-->
+            </tr>
+            </tbody>
 
+        </table>
+
+
+        <table class="table table-striped table-hover caption-top shadow bg-body rounded" style="width: 100%">
+            <caption>List of empty days</caption>
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Possible Employees</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:block th:each="day : ${emptymap} ">
+                <th  scope="row"   th:text="${day.key}" ></th>
+                <th scope="row"  th:inline="text">
+                    <a th:if="${day.value} != null" class="font-weight-bold text-wrap text-secondary" th:each="empl, iterStat : ${day.value}" th:text="${!iterStat.last}? ${empl} + ', ' : ${empl}"></a>
+                    <a class="font-weight-bold" th:if="${day.value} == null"> No possible Employee </a>
+                </th>
             </tr>
             </tbody>
 
@@ -114,6 +136,7 @@
                 </p>
                 <hr class="my-4">
             </p>
+
 
             <p class="lead">
                 Show information about generating algorithms

@@ -149,8 +149,10 @@
             <tbody>
             <tr th:each="employee :${employeeList}">
                 <th scope="row" th:text="${employeeStat.index+1}"></th>
-                <td th:text="${employee.name}"></td>
-                <td th:text="${employee.availability}"></td>
+                <td th:text="${employee.name}" class="text-dark font-weight-bold"></td>
+                <td>
+                    <a class="font-weight-bold text-secondary" th:each="day, iterStat : ${employee.availability}" th:text="${!iterStat.last} ? ${day} + ', ' : ${day} " ></a>
+                </td>
                 <td>
                     <a th:href="@{/home/delete-employee/__${employee.name}__}"
                        class="btn btn-danger shadow bg-body rounded">Delete</a>

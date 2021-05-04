@@ -140,10 +140,12 @@ public class ScheduleController {
         Schedule generatedSchedule = scheduleService.generateScheduleBOE(schedule1);
         Map<Integer, Employee> map = generatedSchedule.getDictionary();
         List<Employee> employeeList = generatedSchedule.getEmployeeList();
+        Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDays();
 
         model.addAttribute("map", map);
         model.addAttribute("schedule", schedule1);
         model.addAttribute("employeeList", employeeList);
+        model.addAttribute("empty-map", emptyDays);
 
         return "schedule-view";
     }
@@ -153,10 +155,14 @@ public class ScheduleController {
         Schedule generatedSchedule = scheduleService.generateScheduleBOE2(schedule1);
         Map<Integer, Employee> map = generatedSchedule.getDictionary();
         List<Employee> employeeList = generatedSchedule.getEmployeeList();
+        Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDays();
 
         model.addAttribute("map", map);
         model.addAttribute("schedule", schedule1);
         model.addAttribute("employeeList", employeeList);
+        model.addAttribute("emptymap", emptyDays);
+        model.addAttribute("empty-map", emptyDays);
+        System.out.println(emptyDays);
 
         return "schedule-view";
     }

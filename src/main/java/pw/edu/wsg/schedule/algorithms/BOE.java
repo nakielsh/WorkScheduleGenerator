@@ -173,10 +173,10 @@ public class BOE {
                 for (Employee employee : schedule.getEmployeeList()) {
                     assert employee.getAvailability() != null;
                     if (employee.getAvailability().contains(i)) {
-                        if (employee.getDaysLeft() > 0) {
+//                        if (employee.getDaysLeft() > 0) {
                             realSchedule.replace(i, employee);
                             decrementDaysLeft(employee);
-                        }
+//                        }
                     }
                 }
             }

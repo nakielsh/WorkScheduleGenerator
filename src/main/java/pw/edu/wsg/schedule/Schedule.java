@@ -6,6 +6,7 @@ import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -112,10 +113,26 @@ public class Schedule {
                 break;
 
         }
-        
+    }
 
+    public Map<Integer, List<String>> findEmptyDays(){
+        Map<Integer, List<String> >  emptyDaysWithPossibleEmployees = new HashMap<>();
 
-
+        for (int i : dictionary.keySet()) {
+            if (dictionary.get(i).getName().equals("")) {
+                List<String> possibleEmployees = new ArrayList<>();
+                for (Employee employee : employeeList) {
+                    if (employee.getAvailability().contains(i)) {
+                        possibleEmployees.add(employee.getName());
+                    }
+                }
+                if (possibleEmployees.size() == 0 ){
+                    possibleEmployees = null;
+                }
+                emptyDaysWithPossibleEmployees.put(i, possibleEmployees);
+            }
+        }
+        return emptyDaysWithPossibleEmployees;
     }
 
     @Override
