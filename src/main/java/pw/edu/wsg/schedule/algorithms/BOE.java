@@ -77,8 +77,12 @@ public class BOE {
                 empl_maxDaysLeft = employee;
             }
         }
-        System.out.println("Most days left: " + empl_maxDaysLeft.getName());
-        System.out.println("Least days left: " + empl_minDaysLeft.getName());
+        if (empl_maxDaysLeft != null && empl_minDaysLeft != null){
+            System.out.println("Most days left: " + empl_maxDaysLeft.getName());
+            System.out.println("Least days left: " + empl_minDaysLeft.getName());
+        }
+
+
 
 
         for (Employee employee1 : schedule.getEmployeeList()){
