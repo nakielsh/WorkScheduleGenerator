@@ -1,5 +1,7 @@
 package pw.edu.wsg.appuser;
 
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -71,4 +73,31 @@ public class AppUserRepositoryService implements AppUserService {
         appUserRepository.save(appUser);
         return "";
     }
+
+    public String getUsername() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        AppUser principal;
+        String username = "Blad";
+        String name = "";
+        if (null != securityContext.getAuthentication()) {
+            principal = (AppUser) securityContext.getAuthentication().getPrincipal();
+            username = securityContext.getAuthentication().getName();
+            name = principal.getFirstName() + " " + principal.getLastName() + " (" + username + ") ";
+
+        }
+        return name;
+    }
+
+    public Long getId() {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+        AppUser principal;
+        Long id = null;
+
+        if (null != securityContext.getAuthentication()) {
+            principal = (AppUser) securityContext.getAuthentication().getPrincipal();
+            id = principal.getId();
+        }
+        return id;
+    }
+
 }

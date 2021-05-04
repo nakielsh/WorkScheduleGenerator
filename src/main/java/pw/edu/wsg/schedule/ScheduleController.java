@@ -4,15 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import pw.edu.wsg.appuser.AppUserRepositoryService;
 import pw.edu.wsg.employee.Employee;
 import pw.edu.wsg.employee.EmployeeRepository;
 import pw.edu.wsg.employee.EmployeeService;
 import pw.edu.wsg.registration.RegistrationService;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import static java.lang.String.format;
@@ -24,18 +23,21 @@ public class ScheduleController {
     private final EmployeeService employeeService;
     private EmployeeRepository employeeRepository;
     private final ScheduleService scheduleService;
+    private AppUserRepositoryService appUserRepositoryService;
     private static final Logger LOG = Logger.getLogger(RegistrationService.class.getName());
     private Schedule schedule1;
 
-    public ScheduleController(EmployeeService employeeService, ScheduleService scheduleService) {
+    public ScheduleController(EmployeeService employeeService, ScheduleService scheduleService, AppUserRepositoryService appUserRepositoryService) {
         this.employeeService = employeeService;
         this.scheduleService = scheduleService;
+        this.appUserRepositoryService = appUserRepositoryService;
     }
 
 
     @GetMapping("")
     public String showHomepage(Model model) {
         model.addAttribute("schedule", new Schedule());
+        model.addAttribute("appuser", appUserRepositoryService.getUsername());
         return "home-page";
     }
 
@@ -46,6 +48,7 @@ public class ScheduleController {
         int month = schedule.getMonth();
         int year = schedule.getYear();
         int days = schedule.getDaysInMonth();
+        model.addAttribute("appuser", appUserRepositoryService.getUsername());
         model.addAttribute("pickedMonth", month);
         model.addAttribute("pickedYear", year);
         model.addAttribute("days", days);
@@ -91,6 +94,7 @@ public class ScheduleController {
 
         model.addAttribute("employeeList", employeeList);
 
+        model.addAttribute("appuser", appUserRepositoryService.getUsername());
         model.addAttribute("pickedMonth", schedule1.getMonth());
         model.addAttribute("schedule", schedule1);
         model.addAttribute("pickedYear", schedule1.getYear());
@@ -109,6 +113,7 @@ public class ScheduleController {
         LOG.info(format("Added Schedule : %s", schedule1));
 
         model.addAttribute("employeeList", employeeList);
+        model.addAttribute("appuser", appUserRepositoryService.getUsername());
 
         model.addAttribute("schedule", schedule1);
         model.addAttribute("pickedMonth", schedule1.getMonth());
@@ -142,6 +147,7 @@ public class ScheduleController {
         List<Employee> employeeList = generatedSchedule.getEmployeeList();
         Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDays();
 
+        model.addAttribute("appuser", appUserRepositoryService.getUsername());
         model.addAttribute("map", map);
         model.addAttribute("schedule", schedule1);
         model.addAttribute("employeeList", employeeList);
@@ -157,6 +163,7 @@ public class ScheduleController {
         List<Employee> employeeList = generatedSchedule.getEmployeeList();
         Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDays();
 
+        model.addAttribute("appuser", appUserRepositoryService.getUsername());
         model.addAttribute("map", map);
         model.addAttribute("schedule", schedule1);
         model.addAttribute("employeeList", employeeList);
