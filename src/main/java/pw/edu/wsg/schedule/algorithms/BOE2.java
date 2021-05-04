@@ -151,7 +151,7 @@ public class BOE2 {
             assert employee.getAvailability() != null;
             for (Integer day : employee.getAvailability()) {
                 if (peopleForDay.containsKey(day)) {
-                    if (realSchedule.get(day).getName() == "") {
+                    if (realSchedule.get(day).getName().equals("")) {
                         Integer tmp = peopleForDay.get(day);
                         tmp += 1;
                         peopleForDay.replace(day, tmp);
@@ -177,15 +177,22 @@ public class BOE2 {
     public void fillEmptyDays() {
         for (int i : realSchedule.keySet()) {
             if (realSchedule.get(i).getName().equals("")) {
+                int daysLeft = -10;
+                Employee toReplace = new Employee("");
                 for (Employee employee : schedule.getEmployeeList()) {
                     assert employee.getAvailability() != null;
                     if (employee.getAvailability().contains(i)) {
-                        if (employee.getDaysLeft() > 0) {  //change here if it doesn't matter if employee has too many working days
-                            realSchedule.replace(i, employee);
-                            decrementDaysLeft(employee);
+                        if (employee.getDaysLeft() != null && employee.getDaysLeft() > daysLeft){
+                            daysLeft = employee.getDaysLeft();
+                            toReplace = employee;
                         }
+//                        if (employee.getDaysLeft() > 0) {
+
+//                        }
                     }
                 }
+                realSchedule.replace(i, toReplace);
+                decrementDaysLeft(toReplace);
             }
         }
     }

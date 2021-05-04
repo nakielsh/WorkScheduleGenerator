@@ -148,7 +148,7 @@ public class BOE {
             assert employee.getAvailability() != null;
             for (Integer day : employee.getAvailability()) {
                 if (peopleForDay.containsKey(day)) {
-                    if (realSchedule.get(day).getName() == "") {
+                    if (realSchedule.get(day).getName().equals("")) {
                         Integer tmp = peopleForDay.get(day);
                         tmp += 1;
                         peopleForDay.replace(day, tmp);
@@ -174,15 +174,22 @@ public class BOE {
     public void fillEmptyDays() {
         for (int i : realSchedule.keySet()) {
             if (realSchedule.get(i).getName().equals("")) {
+                int daysLeft = -10;
+                Employee toReplace = new Employee("");
                 for (Employee employee : schedule.getEmployeeList()) {
                     assert employee.getAvailability() != null;
                     if (employee.getAvailability().contains(i)) {
+                        if (employee.getDaysLeft() != null && employee.getDaysLeft() > daysLeft){
+                            daysLeft = employee.getDaysLeft();
+                            toReplace = employee;
+                        }
 //                        if (employee.getDaysLeft() > 0) {
-                            realSchedule.replace(i, employee);
-                            decrementDaysLeft(employee);
+
 //                        }
                     }
                 }
+                realSchedule.replace(i, toReplace);
+                decrementDaysLeft(toReplace);
             }
         }
     }
