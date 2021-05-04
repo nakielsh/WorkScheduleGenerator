@@ -63,7 +63,7 @@ public class BOE2 {
     public void makeScheduleEqual() {
         Employee empl_maxDaysLeft = null;
         Employee empl_minDaysLeft = null;
-        int max = 0;
+        int max = -2;
         int min = 40;
         for (Employee employee : schedule.getEmployeeList()) {
             if (employee.getDaysLeft() != null) {
