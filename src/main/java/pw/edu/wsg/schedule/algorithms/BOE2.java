@@ -44,7 +44,7 @@ public class BOE2 {
             System.out.println(employee.getName() + " days left: " + employee.getDaysLeft());
         }
 
-        for (Employee employee : schedule.getEmployeeList()) {
+        for (int i = 1; i <= schedule.getDaysInMonth(); i++) {
             makeScheduleEqual();
             fillEmptyDays();
         }
