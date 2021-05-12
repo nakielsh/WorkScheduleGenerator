@@ -11,7 +11,7 @@ import pw.edu.wsg.schedule.algorithms.BOE2;
 @Service
 public class ScheduleService {
 
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
     private final EmployeeService employeeService;
 
 
@@ -40,15 +40,13 @@ public class ScheduleService {
 
     public Schedule generateScheduleBOE(Schedule schedule){
         BOE boe = new BOE(schedule);
-        Schedule generatedSchedule = boe.generateSchedule();
 
-        return generatedSchedule;
+        return boe.generateSchedule();
     }
 
     public Schedule generateScheduleBOE2(Schedule schedule){
         BOE2 boe = new BOE2(schedule);
-        Schedule generatedSchedule = boe.generateSchedule();
 
-        return generatedSchedule;
+        return boe.generateSchedule();
     }
 }

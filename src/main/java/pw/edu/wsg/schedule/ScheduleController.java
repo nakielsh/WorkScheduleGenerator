@@ -1,6 +1,7 @@
 package pw.edu.wsg.schedule;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -21,14 +22,15 @@ import static java.lang.String.format;
 public class ScheduleController {
 
     private final EmployeeService employeeService;
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
     private final ScheduleService scheduleService;
-    private AppUserRepositoryService appUserRepositoryService;
+    private final AppUserRepositoryService appUserRepositoryService;
     private static final Logger LOG = Logger.getLogger(RegistrationService.class.getName());
     private Schedule schedule1;
 
-    public ScheduleController(EmployeeService employeeService, ScheduleService scheduleService, AppUserRepositoryService appUserRepositoryService) {
+    public ScheduleController(EmployeeService employeeService, EmployeeRepository employeeRepository, ScheduleService scheduleService, AppUserRepositoryService appUserRepositoryService) {
         this.employeeService = employeeService;
+        this.employeeRepository = employeeRepository;
         this.scheduleService = scheduleService;
         this.appUserRepositoryService = appUserRepositoryService;
     }
@@ -61,6 +63,9 @@ public class ScheduleController {
 
     @PostMapping("/add-employees")
     public String addEmployees(Employee addedEmployee, Model model) {
+
+
+
         LOG.info(format("Schedule : %s", schedule1));
         List<Employee> employeeList = schedule1.getEmployeeList();
         Employee employeeToRemove = null;
@@ -90,6 +95,12 @@ public class ScheduleController {
             model.addAttribute("name", addedEmployee.getName());
         }
 
+        if(schedule1.getEmployeeList().isEmpty()){
+            model.addAttribute("isNotEmpty", false);
+        }else{
+            model.addAttribute("isNotEmpty", true);
+        }
+
         LOG.info(format("Added Schedule : %s", schedule1));
 
         model.addAttribute("employeeList", employeeList);
@@ -106,6 +117,17 @@ public class ScheduleController {
 
     @GetMapping("/post-delete-add")
     public String addEmployeesAfterDelete(Model model) {
+
+        if(schedule1 == null){
+            return "redirect:/home";
+        }
+
+        if(schedule1.getEmployeeList().isEmpty()){
+            model.addAttribute("isNotEmpty", false);
+        }else{
+            model.addAttribute("isNotEmpty", true);
+        }
+
         LOG.info(format("Schedule : %s", schedule1));
         List<Employee> employeeList = schedule1.getEmployeeList();
 
@@ -170,6 +192,27 @@ public class ScheduleController {
         model.addAttribute("emptymap", emptyDays);
 
         return "schedule-view";
+    }
+
+    @GetMapping("/list-of-employees")
+    public String showAllEmployees(Model model){
+        System.out.println(appUserRepositoryService.getId());
+        model.addAttribute("appuser", appUserRepositoryService.getUsername());
+        List<Employee> everyEmployee = employeeRepository.findByAppUserId(appUserRepositoryService.getId());
+        System.out.println(everyEmployee);
+        model.addAttribute("employeeList", everyEmployee);
+        return "employee-list";
+    }
+
+    @Transactional
+    @GetMapping("/delete-employee-from-db/{name}")
+    public String deleteEmployeeFromDB(@PathVariable(name = "name") String deletedEmployeeName, RedirectAttributes redirectAttributes) {
+
+        employeeRepository.deleteEmployeeByName(deletedEmployeeName);
+        redirectAttributes.addAttribute("isDeleted", true);
+        redirectAttributes.addAttribute("name", deletedEmployeeName);
+
+        return "redirect:/home/list-of-employees";
     }
 
 

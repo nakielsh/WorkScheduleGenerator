@@ -1,12 +1,14 @@
 package pw.edu.wsg.employee;
 
 import com.sun.istack.NotNull;
+import pw.edu.wsg.appuser.AppUserRepositoryService;
 //import io.swagger.annotations.ApiModelProperty;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CreateEmployeeRequest {
+
 
 //    @ApiModelProperty(example = "Lisek Ogrodniczek", required = true)
     @NotNull
@@ -20,6 +22,7 @@ public class CreateEmployeeRequest {
 
     public CreateEmployeeRequest() {
     }
+
 
     public CreateEmployeeRequest(String name, List<Integer> availability) {
         this.name = name;
