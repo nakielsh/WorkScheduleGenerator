@@ -56,7 +56,7 @@ public class BOE {
         }
         setNumberOfDays();
 
-        schedule.setDictionary(realSchedule);
+        schedule.setRealSchedule1(realSchedule);
 
 
         return schedule;

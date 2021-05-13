@@ -12,7 +12,8 @@ import java.util.Map;
 
 public class Schedule {
 
-    private Map<Integer, Employee> dictionary;
+    private Map<Integer, Employee> realSchedule1;
+    private Map<Integer, List<Employee>> realScheduleMulti;
     private List<Employee> employeeList = new ArrayList<>();
     private Integer year;
     private String monthName;
@@ -27,12 +28,20 @@ public class Schedule {
         this.daysInMonth = yearMonth.lengthOfMonth();
     }
 
-    public Map<Integer, Employee> getDictionary() {
-        return dictionary;
+    public Map<Integer, Employee> getRealSchedule1() {
+        return realSchedule1;
     }
 
-    public void setDictionary(Map<Integer, Employee> dictionary) {
-        this.dictionary = dictionary;
+    public void setRealSchedule1(Map<Integer, Employee> dictionary) {
+        this.realSchedule1 = dictionary;
+    }
+
+    public Map<Integer, List<Employee>> getRealScheduleMulti() {
+        return realScheduleMulti;
+    }
+
+    public void setRealScheduleMulti(Map<Integer, List<Employee>> realScheduleMulti) {
+        this.realScheduleMulti = realScheduleMulti;
     }
 
     public Integer getYear() {
@@ -115,11 +124,11 @@ public class Schedule {
         }
     }
 
-    public Map<Integer, List<String>> findEmptyDays(){
+    public Map<Integer, List<String>> findEmptyDaysInSchedule1(){
         Map<Integer, List<String> >  emptyDaysWithPossibleEmployees = new HashMap<>();
 
-        for (int i : dictionary.keySet()) {
-            if (dictionary.get(i).getName().equals("")) {
+        for (int i : realSchedule1.keySet()) {
+            if (realSchedule1.get(i).getName().equals("")) {
                 List<String> possibleEmployees = new ArrayList<>();
                 for (Employee employee : employeeList) {
                     if (employee.getAvailability().contains(i)) {
@@ -135,10 +144,33 @@ public class Schedule {
         return emptyDaysWithPossibleEmployees;
     }
 
+    public Map<Integer, List<String>> findEmptyDaysInScheduleMulti(){
+        Map<Integer, List<String> >  emptyDaysWithPossibleEmployees = new HashMap<>();
+
+        for (int i : realScheduleMulti.keySet()) {
+            for(Employee employee : realScheduleMulti.get(i)){
+                if (employee.getName().equals("")) {
+                    List<String> possibleEmployees = new ArrayList<>();
+                    for (Employee employee1 : employeeList) {
+                        if (employee1.getAvailability().contains(i)) {
+                            possibleEmployees.add(employee1.getName());
+                        }
+                    }
+                    if (possibleEmployees.size() == 0 ){
+                        possibleEmployees = null;
+                    }
+                    emptyDaysWithPossibleEmployees.put(i, possibleEmployees);
+                }
+            }
+
+        }
+        return emptyDaysWithPossibleEmployees;
+    }
+
     @Override
     public String toString() {
         return "Schedule{" +
-                "dictionary=" + dictionary +
+                "dictionary=" + realSchedule1 +
                 ", employeeList=" + employeeList +
                 ", year=" + year +
                 ", month=" + month +

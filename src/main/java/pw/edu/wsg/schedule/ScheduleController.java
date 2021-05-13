@@ -165,15 +165,16 @@ public class ScheduleController {
     @GetMapping("/generated/based-on-equality")
     public String showBOESchedule(Model model){
         Schedule generatedSchedule = scheduleService.generateScheduleBOE(schedule1);
-        Map<Integer, Employee> map = generatedSchedule.getDictionary();
+        Map<Integer, Employee> map = generatedSchedule.getRealSchedule1();
         List<Employee> employeeList = generatedSchedule.getEmployeeList();
-        Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDays();
+        Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDaysInSchedule1();
 
         model.addAttribute("appuser", appUserRepositoryService.getUsername());
         model.addAttribute("map", map);
         model.addAttribute("schedule", schedule1);
         model.addAttribute("employeeList", employeeList);
         model.addAttribute("emptymap", emptyDays);
+        model.addAttribute("BOE1", true);
 
         return "schedule-view";
     }
@@ -181,15 +182,16 @@ public class ScheduleController {
     @GetMapping("/generated/based-on-equality2")
     public String showBOE2Schedule(Model model){
         Schedule generatedSchedule = scheduleService.generateScheduleBOE2(schedule1);
-        Map<Integer, Employee> map = generatedSchedule.getDictionary();
+        Map<Integer, List<Employee>> map = generatedSchedule.getRealScheduleMulti();
         List<Employee> employeeList = generatedSchedule.getEmployeeList();
-        Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDays();
+        Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDaysInScheduleMulti();
 
         model.addAttribute("appuser", appUserRepositoryService.getUsername());
         model.addAttribute("map", map);
         model.addAttribute("schedule", schedule1);
         model.addAttribute("employeeList", employeeList);
         model.addAttribute("emptymap", emptyDays);
+        model.addAttribute("BOEMore", true);
 
         return "schedule-view";
     }

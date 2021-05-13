@@ -88,7 +88,7 @@ class BOETest {
         //when
         BOE boe = new BOE(schedule);
         Schedule generatedSchedule = boe.generateSchedule();
-        System.out.print(generatedSchedule.getDictionary());
+        System.out.print(generatedSchedule.getRealSchedule1());
         System.out.println("\ngenerated schedule" + generatedSchedule.getEmployeeList().toString());
         System.out.println("previous schedule" + schedule.getEmployeeList().toString());
         int nLisek = 0;
@@ -96,7 +96,7 @@ class BOETest {
         int nMarta = 0;
         int none = 0;
 
-        for (Employee employee : generatedSchedule.getDictionary().values()) {
+        for (Employee employee : generatedSchedule.getRealSchedule1().values()) {
             if (employee.getName() != null) {
                 if (employee.getName().equals("Lisek")) {
                     nLisek += 1;

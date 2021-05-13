@@ -83,7 +83,7 @@
 
 <div class="row">
     <div class="container-fluid text-center table-responsive">
-        <table class="table mx-auto table-bordered table-striped table-hover caption-top shadow bg-body rounded"
+        <table th:if="${BOE1}" class="table mx-auto table-bordered table-striped table-hover caption-top shadow bg-body rounded"
                style="width: auto">
             <caption>Work Schedule</caption>
             <thead class="table-dark">
@@ -99,6 +99,32 @@
                 <td th:each="day : ${map}">
                     <a th:if="${day.value.name == employee.name}" class="font-weight-bold text-danger">x</a>
                     <a th:unless="${day.value.name == employee.name}" class="font-weight-lighter text-secondary">-</a>
+                </td>
+                <td th:text="${employee.numOfWorkingDays}" class="font-weight-bold"></td>
+            </tr>
+            </tbody>
+
+        </table>
+
+        <table th:if="${BOEMore}" class="table mx-auto table-bordered table-striped table-hover caption-top shadow bg-body rounded"
+               style="width: auto">
+            <caption>Work Schedule</caption>
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th th:each="day : ${map}" scope="col" th:text="${day.key}"></th>
+                <th scope="col">Sum</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee :${employeeList}">
+                <td th:text="${employee.name}" class="font-weight-bold"></td>
+                <td th:each="day : ${map}">
+                    <a th:each="empl : ${day.value}">
+                        <a th:if="${empl.name == employee.name}" class="font-weight-bold text-danger">x</a>
+                        <a th:unless="${empl.name == employee.name}" class="font-weight-lighter text-secondary">-</a>
+                    </a>
+
                 </td>
                 <td th:text="${employee.numOfWorkingDays}" class="font-weight-bold"></td>
             </tr>
