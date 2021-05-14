@@ -37,23 +37,24 @@ public class BOE2 {
             leastAvailableEmployee = findLeastAvailableEmployeeThisDay(leastWantedDay);
             setEmployeeToDay(leastWantedDay, leastAvailableEmployee);
             peopleForDay.replace(leastWantedDay, 0);
-            decrementDaysLeft(leastAvailableEmployee);
+//            decrementDaysLeft(leastAvailableEmployee);
+//            System.out.println("Decremented in generation: " + leastAvailableEmployee.getName());
         }
         System.out.println("\tBefore optimalization:");
         for (Employee employee : schedule.getEmployeeList()) {
             System.out.println(employee.getName() + " days left: " + employee.getDaysLeft());
         }
 
-        for (Employee employee : schedule.getEmployeeList()) {
-            fillEmptyDays();
-            makeScheduleEqual();
-        }
+//        for (Employee employee : schedule.getEmployeeList()) {
+//            fillEmptyDays();
+//            makeScheduleEqual();
+//        }
 
 
-        System.out.println("\tAfter optimalization:");
-        for (Employee employee : schedule.getEmployeeList()) {
-            System.out.println(employee.getName() + " days left: " + employee.getDaysLeft());
-        }
+//        System.out.println("\tAfter optimalization:");
+//        for (Employee employee : schedule.getEmployeeList()) {
+//            System.out.println(employee.getName() + " days left: " + employee.getDaysLeft());
+//        }
         setNumberOfDays();
 
         schedule.setRealScheduleMulti(realSchedule);
@@ -213,7 +214,7 @@ public class BOE2 {
     }
 
     public Employee findLeastAvailableEmployeeThisDay(int day) {
-        int min = 100;
+        int min = 200;
         Employee leastEmployee = new Employee("");
         for (Employee employee : schedule.getEmployeeList()) {
             if (employee.getAvailability() != null) {
@@ -225,7 +226,6 @@ public class BOE2 {
                         }
                     }
                 }
-
             }
         }
         System.out.println("Least available Employee: " + leastEmployee.getName() + " for day " + day);
@@ -233,7 +233,7 @@ public class BOE2 {
     }
 
     public void countMaxWorkingDays() {
-        maxWorkingDays = (2*schedule.getDaysInMonth() / schedule.getEmployeeList().size()) + 1;
+        maxWorkingDays = (2*schedule.getDaysInMonth() / schedule.getEmployeeList().size());
     }
 
     public void setEmployeeToDay(int day, Employee employee) {
@@ -253,6 +253,7 @@ public class BOE2 {
             toReplaceList.add(employee);
             realSchedule.replace(day, toReplaceList);
             decrementDaysLeft(employee);
+            System.out.println("Decremented in set: " + employee.getName());
         }
 
 
@@ -269,6 +270,7 @@ public class BOE2 {
         for (Employee employee1 : schedule.getEmployeeList()) {
             if (employee1.getName().equals(employee.getName())) {
                 employee1.decrementDaysLeft();
+                System.out.println("Decremented day for: " + employee.getName());
             }
         }
     }

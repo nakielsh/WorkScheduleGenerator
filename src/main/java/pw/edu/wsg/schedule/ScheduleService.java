@@ -7,6 +7,7 @@ import pw.edu.wsg.employee.EmployeeRepository;
 import pw.edu.wsg.employee.EmployeeService;
 import pw.edu.wsg.schedule.algorithms.BOE;
 import pw.edu.wsg.schedule.algorithms.BOE2;
+import pw.edu.wsg.schedule.algorithms.BOEMul;
 
 @Service
 public class ScheduleService {
@@ -46,6 +47,12 @@ public class ScheduleService {
 
     public Schedule generateScheduleBOE2(Schedule schedule){
         BOE2 boe = new BOE2(schedule);
+
+        return boe.generateSchedule();
+    }
+
+    public Schedule generateScheduleBOEMul(Schedule schedule){
+        BOEMul boe = new BOEMul(schedule);
 
         return boe.generateSchedule();
     }

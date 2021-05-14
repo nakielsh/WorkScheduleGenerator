@@ -181,7 +181,12 @@ public class ScheduleController {
 
     @GetMapping("/generated/based-on-equality2")
     public String showBOE2Schedule(Model model){
-        Schedule generatedSchedule = scheduleService.generateScheduleBOE2(schedule1);
+//        Schedule generatedSchedule = scheduleService.generateScheduleBOE2(schedule1);
+//        Map<Integer, List<Employee>> map = generatedSchedule.getRealScheduleMulti();
+//        List<Employee> employeeList = generatedSchedule.getEmployeeList();
+//        Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDaysInScheduleMulti();
+
+        Schedule generatedSchedule = scheduleService.generateScheduleBOEMul(schedule1);
         Map<Integer, List<Employee>> map = generatedSchedule.getRealScheduleMulti();
         List<Employee> employeeList = generatedSchedule.getEmployeeList();
         Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDaysInScheduleMulti();
