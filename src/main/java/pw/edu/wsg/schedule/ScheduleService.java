@@ -1,6 +1,7 @@
 package pw.edu.wsg.schedule;
 
 import org.springframework.stereotype.Service;
+import pw.edu.wsg.appuser.AppUserRepositoryService;
 import pw.edu.wsg.employee.CreateEmployeeRequest;
 import pw.edu.wsg.employee.Employee;
 import pw.edu.wsg.employee.EmployeeRepository;
@@ -9,16 +10,22 @@ import pw.edu.wsg.schedule.algorithms.BOE;
 import pw.edu.wsg.schedule.algorithms.BOE2;
 import pw.edu.wsg.schedule.algorithms.BOEMul;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class ScheduleService {
 
     private final EmployeeRepository employeeRepository;
     private final EmployeeService employeeService;
+    private final AppUserRepositoryService appUserRepositoryService;
 
 
-    public ScheduleService(EmployeeRepository employeeRepository, EmployeeService employeeService) {
+    public ScheduleService(EmployeeRepository employeeRepository, EmployeeService employeeService, AppUserRepositoryService appUserRepositoryService) {
         this.employeeRepository = employeeRepository;
         this.employeeService = employeeService;
+        this.appUserRepositoryService = appUserRepositoryService;
     }
 
     public Object addEmployee(Employee employee) {
@@ -55,5 +62,21 @@ public class ScheduleService {
         BOEMul boe = new BOEMul(schedule);
 
         return boe.generateSchedule();
+    }
+
+    public String[] getEmployeeNameList(){
+        List<Employee> everyEmployee = employeeRepository.findByAppUserId(appUserRepositoryService.getId());
+//        List<String> everyEmployeeName = new ArrayList<>();
+//        for (Employee employee : everyEmployee){
+//            everyEmployeeName.add(employee.getName());
+//        }
+        String [] everyEmployeeName = new String [everyEmployee.size()];
+        for(int i = 0 ; i < everyEmployee.size(); i++){
+            everyEmployeeName[i] = everyEmployee.get(i).getName();
+        }
+
+        System.out.println(Arrays.toString(everyEmployeeName));
+        System.out.println(everyEmployee);
+        return everyEmployeeName;
     }
 }

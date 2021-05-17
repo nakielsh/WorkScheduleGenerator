@@ -13,15 +13,17 @@
 <!--            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"-->
 <!--            crossorigin="anonymous"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/css/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
           rel="stylesheet"/>
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/5af5eb3f80.js" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="../static/css/autocomplete.css">
 </head>
 <body>
 
@@ -85,7 +87,7 @@
                 <div class="form-group row">
                     <div class="col">
                         <label class="col-form-label form-control-lg ">
-                            <input type="text" class="form-control shadow bg-body rounded" id="name" placeholder="Name"
+                            <input type="text" class="form-control shadow bg-body rounded autocomplete" id="name" placeholder="Name"
                                    th:field="*{name}" required
                                    minlength="1" maxlength="25">
                         </label>
@@ -137,6 +139,19 @@
         startDate: beginningDate,
         endDate: lastDate,
         disableTouchKeyboard: "true"
+    });
+    /*]]>*/
+</script>
+
+<script th:inline="javascript" type="text/javascript">
+    /*<![CDATA[*/
+    $(function() {
+        var availableTags = [[${employeeNameList}]]
+        console.log(availableTags);
+
+        $(".autocomplete").autocomplete({
+            source: availableTags
+        });
     });
     /*]]>*/
 </script>
