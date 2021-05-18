@@ -144,6 +144,7 @@ public class ScheduleController {
         model.addAttribute("pickedYear", schedule1.getYear());
         model.addAttribute("days", schedule1.getDaysInMonth());
         model.addAttribute("addedEmployee", new Employee());
+        model.addAttribute("employeeNameList", scheduleService.getEmployeeNameList());
 
         return "add-employees";
     }

@@ -66,6 +66,23 @@
 </nav>
 
 <div class="jumbotron jumbotron-fluid ">
+
+  <div th:if="${#request.getParameter('isDeleted')}" role="alert" aria-live="assertive" aria-atomic="true"
+       class="toast justify-content-center align-items-center" data-autohide="false"
+       style="position: relative;  left: 40px;">
+    <div class="toast-header ">
+      <i class="far fa-trash-alt fa-3x text-danger"></i>
+      <strong class="mr-auto">Deleted</strong>
+      <small>while ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="toast-body">
+      Employee <a class="font-weight-bold" th:text="${#request.getParameter('name')}"></a> deleted
+    </div>
+  </div>
+
   <div class="jumbotron jumbotron-fluid container text-center">
 
     <div>
@@ -133,3 +150,11 @@
 </div>
 
 </body>
+
+<script>
+  $(document).ready(function () {
+    $('.toast').toast('show');
+  });
+</script>
+
+</html>

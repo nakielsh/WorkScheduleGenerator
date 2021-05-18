@@ -98,7 +98,7 @@
                 <td th:text="${employee.name}" class="font-weight-bold"></td>
                 <td th:each="day : ${map}">
                     <a th:if="${day.value.name == employee.name}" class="font-weight-bold text-danger">x</a>
-                    <a th:unless="${day.value.name == employee.name}" class="font-weight-lighter text-secondary">-</a>
+                    <a th:unless="${day.value.name == employee.name}" class="font-weight-lighter text-secondary"></a>
                 </td>
                 <td th:text="${employee.numOfWorkingDays}" class="font-weight-bold"></td>
             </tr>
@@ -122,7 +122,7 @@
                 <td th:each="day : ${map}">
                     <a th:each="empl : ${day.value}">
                         <a th:if="${empl.name == employee.name}" class="font-weight-bold text-danger">x</a>
-                        <a th:unless="${empl.name == employee.name}" class="font-weight-lighter text-secondary">-</a>
+                        <a th:unless="${empl.name == employee.name}" class="font-weight-lighter text-secondary"></a>
                     </a>
 
                 </td>
