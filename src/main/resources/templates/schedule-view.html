@@ -4,23 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>WSG App</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-            crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/css/custom-theme/jquery-ui-1.10.0.custom.css"
+          rel="stylesheet"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
           rel="stylesheet"/>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/5af5eb3f80.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/autocomplete.css">
 
 </head>
 <body>
@@ -211,8 +208,8 @@
                     BOE
                 </button>
                 <button class="btn btn-outline-dark btn-lg shadow bg-body " type="button" data-toggle="collapse"
-                        data-target="#boa" aria-expanded="true" aria-controls="boa">
-                    BOA
+                        data-target="#boemul" aria-expanded="true" aria-controls="boemul">
+                    BOEMul
                 </button>
             </div>
             </p>
@@ -233,17 +230,27 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="collapse multi-collapse" id="boa">
+                    <div class="collapse multi-collapse" id="boemul">
                         <div class="card card-body font-weight-light">
-                            <p class="lead font-weight-bolder">BOA - Based On Availability</p>
+                            <p class="lead font-weight-bolder">BOEMul - Based On Equality</p>
                             <hr class="my-4">
-                            Algorithm spares the work considering everyone's availability. The more you are available,
-                            the more days you work.
+                            Algorithm spares the work equally. Everyone has almost the same amount of working days. You
+                            can choose number of employees per day
                             <hr class="my-4">
-                            <a  class="btn btn-outline-dark shadow bg-body rounded" th:href="@{/home/generated/based-on-equality2}">Generate
+
+                            <a class="btn btn-outline-dark shadow bg-body rounded dropdown-toggle" role="button"
+                               id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                               th:href="@{/home/generated/based-on-equality2/__${num}__}">Generate
                                 schedule
                                 <i class="fas fa-file-alt"></i>
                             </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" th:each="i : ${#numbers.sequence(2, 10)}" th:value="${i}"
+                                   th:text="${i}"
+                                   th:href="@{/home/generated/based-on-equality2/__${i}__}">
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

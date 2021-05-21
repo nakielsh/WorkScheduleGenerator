@@ -14,7 +14,8 @@
     <!--            crossorigin="anonymous"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/css/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-bootstrap/0.5pre/css/custom-theme/jquery-ui-1.10.0.custom.css"
+          rel="stylesheet"/>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
@@ -47,7 +48,8 @@
                 <h5 class="text-dark h4">Check saved employees</h5>
                 <span class="text-muted">Shows list of all saved employees in database</span>
                 <div class="p-4 bd-highlight">
-                    <a class="btn btn-outline-dark shadow bg-body rounded " th:href="@{/home/list-of-employees}">Show list
+                    <a class="btn btn-outline-dark shadow bg-body rounded " th:href="@{/home/list-of-employees}">Show
+                        list
                         <i class="fas fa-user-friends"></i>
                     </a>
                 </div>
@@ -141,7 +143,8 @@
                 <div class="form-group row">
                     <div class="col">
                         <label class="col-form-label form-control-lg">
-                            <input type="text" class="form-control shadow bg-body rounded autocomplete" id="name" placeholder="Name"
+                            <input type="text" class="form-control shadow bg-body rounded autocomplete" id="name"
+                                   placeholder="Name"
                                    th:field="*{name}" required
                                    minlength="1" maxlength="25">
                         </label>
@@ -156,7 +159,6 @@
                         </label>
                     </div>
                 </div>
-
 
 
                 <div>
@@ -245,38 +247,32 @@
                         <div class="card card-body font-weight-light">
                             <p class="lead font-weight-bolder">BOEMul - Based On Equality</p>
                             <hr class="my-4">
-                            Algorithm spares the work equally. Everyone has almost the same amount of working days. You can choose number of employees per day
+                            Algorithm spares the work equally. Everyone has almost the same amount of working days. You
+                            can choose number of employees per day
                             <hr class="my-4">
-                            <div class="form-group">
-                                <label for="numPeopleSelect">Select number of working people a day</label>
-                                <select class="form-control" id="numPeopleSelect" th:field="*{num}">
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </div>
-                                <a class="btn btn-outline-dark shadow bg-body rounded"
-                                   th:href="@{/home/generated/based-on-equality2/__${num}__}">Generate
-                                    schedule
-                                    <i class="fas fa-file-alt"></i>
+
+                            <a class="btn btn-outline-dark shadow bg-body rounded dropdown-toggle" role="button"
+                               id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                               th:href="@{/home/generated/based-on-equality2/__${num}__}">Generate
+                                schedule
+                                <i class="fas fa-file-alt"></i>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" th:each="i : ${#numbers.sequence(2, 10)}" th:value="${i}"
+                                   th:text="${i}"
+                                   th:href="@{/home/generated/based-on-equality2/__${i}__}">
                                 </a>
-
                             </div>
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
+
+
+</div>
 </div>
 
 </body>
@@ -311,7 +307,7 @@
 
 <script th:inline="javascript" type="text/javascript">
     /*<![CDATA[*/
-    $(function() {
+    $(function () {
         var availableTags = [[${employeeNameList}]]
         console.log(availableTags);
 

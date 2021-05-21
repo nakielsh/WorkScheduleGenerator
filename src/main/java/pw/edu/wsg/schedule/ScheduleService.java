@@ -66,10 +66,6 @@ public class ScheduleService {
 
     public String[] getEmployeeNameList(){
         List<Employee> everyEmployee = employeeRepository.findByAppUserId(appUserRepositoryService.getId());
-//        List<String> everyEmployeeName = new ArrayList<>();
-//        for (Employee employee : everyEmployee){
-//            everyEmployeeName.add(employee.getName());
-//        }
         String [] everyEmployeeName = new String [everyEmployee.size()];
         for(int i = 0 ; i < everyEmployee.size(); i++){
             everyEmployeeName[i] = everyEmployee.get(i).getName();
