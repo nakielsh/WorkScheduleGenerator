@@ -20,6 +20,8 @@ public class Schedule {
     private Integer month;
     private int daysInMonth;
 
+    private int maxPeopleForDay;
+
     public Schedule() {
     }
 
@@ -59,6 +61,10 @@ public class Schedule {
     public void setMonth(int month) {
         this.month = month;
         setMonthName();
+    }
+
+    public void setMaxPeopleForDay(int maxPeopleForDay) {
+        this.maxPeopleForDay = maxPeopleForDay;
     }
 
     public int getDaysInMonth() {
@@ -144,34 +150,12 @@ public class Schedule {
         return emptyDaysWithPossibleEmployees;
     }
 
-//    public Map<Integer, List<String>> findEmptyDaysInScheduleMulti(){
-//        Map<Integer, List<String> >  emptyDaysWithPossibleEmployees = new HashMap<>();
-//
-//        for (int i : realScheduleMulti.keySet()) {
-//            for(Employee employee : realScheduleMulti.get(i)){
-//                if (employee.getName().equals("")) {
-//                    List<String> possibleEmployees = new ArrayList<>();
-//                    for (Employee employee1 : employeeList) {
-//                        if (employee1.getAvailability().contains(i)) {
-//                            possibleEmployees.add(employee1.getName());
-//                        }
-//                    }
-//                    if (possibleEmployees.size() == 0 ){
-//                        possibleEmployees = null;
-//                    }
-//                    emptyDaysWithPossibleEmployees.put(i, possibleEmployees);
-//                }
-//            }
-//
-//        }
-//        return emptyDaysWithPossibleEmployees;
-//    }
 
     public Map<Integer, List<String>> findEmptyDaysInScheduleMulti(){
         Map<Integer, List<String> >  emptyDaysWithPossibleEmployees = new HashMap<>();
 
         for (int i : realScheduleMulti.keySet()) {
-                if (realScheduleMulti.get(i).size() < 2) {
+                if (realScheduleMulti.get(i).size() < maxPeopleForDay) {
                     List<String> possibleEmployees = new ArrayList<>();
                     for (Employee employee1 : employeeList) {
                         if (employee1.getAvailability().contains(i)) {

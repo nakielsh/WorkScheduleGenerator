@@ -58,8 +58,8 @@ public class ScheduleService {
         return boe.generateSchedule();
     }
 
-    public Schedule generateScheduleBOEMul(Schedule schedule){
-        BOEMul boe = new BOEMul(schedule);
+    public Schedule generateScheduleBOEMul(Schedule schedule, int maxPeopleForDay){
+        BOEMul boe = new BOEMul(schedule, maxPeopleForDay);
 
         return boe.generateSchedule();
     }

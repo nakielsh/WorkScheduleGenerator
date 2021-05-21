@@ -113,6 +113,7 @@ public class ScheduleController {
         model.addAttribute("days", schedule1.getDaysInMonth());
         model.addAttribute("addedEmployee", new Employee());
         model.addAttribute("employeeNameList", scheduleService.getEmployeeNameList());
+        model.addAttribute("num", 2);
 
         return "add-employees";
     }
@@ -145,6 +146,7 @@ public class ScheduleController {
         model.addAttribute("days", schedule1.getDaysInMonth());
         model.addAttribute("addedEmployee", new Employee());
         model.addAttribute("employeeNameList", scheduleService.getEmployeeNameList());
+        model.addAttribute("num", 2);
 
         return "add-employees";
     }
@@ -182,14 +184,10 @@ public class ScheduleController {
         return "schedule-view";
     }
 
-    @GetMapping("/generated/based-on-equality2")
-    public String showBOE2Schedule(Model model){
-//        Schedule generatedSchedule = scheduleService.generateScheduleBOE2(schedule1);
-//        Map<Integer, List<Employee>> map = generatedSchedule.getRealScheduleMulti();
-//        List<Employee> employeeList = generatedSchedule.getEmployeeList();
-//        Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDaysInScheduleMulti();
+    @GetMapping("/generated/based-on-equality2/{num}")
+    public String showBOE2Schedule(@PathVariable(name = "num") int num,Model model){
 
-        Schedule generatedSchedule = scheduleService.generateScheduleBOEMul(schedule1);
+        Schedule generatedSchedule = scheduleService.generateScheduleBOEMul(schedule1, num);
         Map<Integer, List<Employee>> map = generatedSchedule.getRealScheduleMulti();
         List<Employee> employeeList = generatedSchedule.getEmployeeList();
         Map<Integer, List<String>> emptyDays = generatedSchedule.findEmptyDaysInScheduleMulti();

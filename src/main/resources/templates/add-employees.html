@@ -218,8 +218,8 @@
                     BOE
                 </button>
                 <button class="btn btn-outline-dark btn-lg shadow bg-body " type="button" data-toggle="collapse"
-                        data-target="#boa" aria-expanded="true" aria-controls="boa">
-                    BOA
+                        data-target="#boemul" aria-expanded="true" aria-controls="boemul">
+                    BOEMul
                 </button>
             </div>
             </p>
@@ -241,18 +241,34 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="collapse multi-collapse" id="boa">
+                    <div class="collapse multi-collapse" id="boemul">
                         <div class="card card-body font-weight-light">
-                            <p class="lead font-weight-bolder">BOA - Based On Availability</p>
+                            <p class="lead font-weight-bolder">BOEMul - Based On Equality</p>
                             <hr class="my-4">
-                            Algorithm spares the work considering everyone's availability. The more you are available,
-                            the more days you work.
+                            Algorithm spares the work equally. Everyone has almost the same amount of working days. You can choose number of employees per day
                             <hr class="my-4">
-                            <a class="btn btn-outline-dark shadow bg-body rounded"
-                               th:href="@{/home/generated/based-on-equality2}">Generate
-                                schedule
-                                <i class="fas fa-file-alt"></i>
-                            </a>
+                            <div class="form-group">
+                                <label for="numPeopleSelect">Select number of working people a day</label>
+                                <select class="form-control" id="numPeopleSelect" th:field="*{num}">
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                                <a class="btn btn-outline-dark shadow bg-body rounded"
+                                   th:href="@{/home/generated/based-on-equality2/__${num}__}">Generate
+                                    schedule
+                                    <i class="fas fa-file-alt"></i>
+                                </a>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
