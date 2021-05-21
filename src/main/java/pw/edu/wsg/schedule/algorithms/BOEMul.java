@@ -47,6 +47,12 @@ public class BOEMul {
             System.out.println(employee.getName() + " days left: " + employee.getDaysLeft());
         }
 
+        for (Employee employee : schedule.getEmployeeList()) {
+            fillEmptyDays();
+//            makeScheduleEqual();
+        }
+        updatePeopleForDay();
+
         setNumberOfDays();
 
         schedule.setRealScheduleMulti(realSchedule);
@@ -125,6 +131,7 @@ public class BOEMul {
 
 
     public void setEmployeeToDay(int day, Employee employee){
+        updatePeopleForDay();
         if ( peopleWorkingADay.get(day) < 2 ){
             if ( !realSchedule.get(day).contains(employee)){
                 List<Employee> toReplaceList = realSchedule.get(day);
@@ -132,6 +139,7 @@ public class BOEMul {
                 toReplaceList.add(employee);
                 realSchedule.replace(day, toReplaceList);
                 peopleWorkingADay.put(day, realSchedule.get(day).size());
+                System.out.println("Employee: " + employee.getName() + "set to day: " + day);
             }
 
         }
@@ -170,6 +178,57 @@ public class BOEMul {
     public void setNumberOfDays() {
         for (Employee employee : schedule.getEmployeeList()) {
             employee.setNumOfWorkingDays(maxWorkingDays - employee.getDaysLeft());
+        }
+    }
+
+    public void removeEmptyEmployees(){
+        Employee emptyEmployee = null;
+        for ( int i : realSchedule.keySet()){
+            for (Employee employee : realSchedule.get(i)){
+                if( employee.getName().equals("")){
+                    emptyEmployee = employee;
+                }
+            }
+            List<Employee> employeeList = realSchedule.get(i);
+            if(emptyEmployee != null) {
+                employeeList.remove(emptyEmployee);
+                realSchedule.replace(i,employeeList);
+                peopleWorkingADay.put(i, realSchedule.get(i).size());
+                System.out.println("We have an impostor in day: " + i);
+            }
+        }
+    }
+
+    public void updatePeopleForDay(){
+        for ( int i : realSchedule.keySet()) {
+            peopleWorkingADay.put(i, realSchedule.get(i).size());
+        }
+    }
+
+    public void fillEmptyDays(){
+        removeEmptyEmployees();
+        for (int i : realSchedule.keySet()){
+            if(realSchedule.get(i).size() < 2 ){
+                int daysLeft = -100;
+                Employee toReplace = new Employee("");
+                for (Employee employee : schedule.getEmployeeList()) {
+                    assert employee.getAvailability() != null;
+                    if (employee.getAvailability().contains(i)) {
+                        if(!realSchedule.get(i).contains(employee)){
+                            if (employee.getDaysLeft() != null && employee.getDaysLeft() > daysLeft){
+                                daysLeft = employee.getDaysLeft();
+                                toReplace = employee;
+                            }
+                        }
+
+//                        if (employee.getDaysLeft() > 0) {
+
+//                        }
+                    }
+                }
+                System.out.println("Set Employee: " + toReplace.getName() + "to day: " + i);
+                setEmployeeToDay(i, toReplace);
+            }
         }
     }
 }
