@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simple example</title>
+</head>
+<style>
+  html {
+    box-sizing: border-box;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+</style>
+<body>
+<button onclick="generate()">Generate pdf</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
+<script src="../templates/Pattaya-Regular-normal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf-customfonts@0.0.4-rc.4/dist/jspdf.customfonts.min.js"></script>
+
+<table id="table">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>Country</th>
+    <th>IP-address</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>Michał</td>
+    <td>Moore</td>
+    <td>dmoore0@furl.net</td>
+    <td>China</td>
+    <td>211.56.242.221</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Janice</td>
+    <td>Henry</td>
+    <td>jhenry1@theatlantic.com</td>
+    <td>Ukraine</td>
+    <td>38.36.7.199</td>
+  </tr>
+  </tbody>
+</table>
+
+<script>
+  function generate() {
+    var doc = new jspdf.jsPDF('l', 'pt', 'letter')
+
+    // doc.addFont()
+    // doc.addFont("Pattaya-Regular.ttf", "Pattaya", "normal");
+    doc.setFont("Pattaya-Regular","normal");
+    doc.text("Michał śnietka",14,16);
+
+    doc.autoTable({
+      html: '#table',
+      startY: 25,
+      styles: { overflow: 'ellipsize', cellWidth: 'wrap' ,font: "Pattaya-Regular"},
+      columnStyles: { 0: { halign: 'center'},text: { cellWidth: 'auto' } },
+      headStyles: {halign: 'center', fillColor: [0, 0, 0] },
+      bodyStyles: {halign: 'center'},
+      theme: 'grid'
+    })
+
+
+    doc.save('table.pdf')
+  }
+</script>
+</body>
+</html>
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About

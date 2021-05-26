@@ -18,6 +18,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/5af5eb3f80.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/autocomplete.css">
+<!--    <link href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css" rel="stylesheet">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/tableExport.min.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF/jspdf.min.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/tableexport.jquery.plugin@1.10.21/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>-->
+<!--    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>-->
+<!--    <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/extensions/export/bootstrap-table-export.min.js"></script>-->
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
+
 
 </head>
 <body>
@@ -40,7 +52,8 @@
                 <h5 class="text-dark h4">Check saved employees</h5>
                 <span class="text-muted">Shows list of all saved employees in database</span>
                 <div class="p-4 bd-highlight">
-                    <a class="btn btn-outline-dark shadow bg-body rounded " th:href="@{/home/list-of-employees}">Show list
+                    <a class="btn btn-outline-dark shadow bg-body rounded " th:href="@{/home/list-of-employees}">Show
+                        list
                         <i class="fas fa-user-friends"></i>
                     </a>
                 </div>
@@ -68,7 +81,7 @@
         <div>
             <h1 class="display-4">Your Generated Schedule</h1>
             <p>The schedule has been generated using BOE method for
-                <a th:text="${schedule.monthName}"class="font-weight-bold"> </a>
+                <a th:text="${schedule.monthName}" class="font-weight-bold"> </a>
                 <a th:text="${schedule.year}" class="font-weight-bold"></a>
             </p>
             <hr class="my-4">
@@ -79,9 +92,21 @@
 
 
 <div class="row">
-    <div class="container-fluid text-center table-responsive">
-        <table th:if="${BOE1}" class="table mx-auto table-bordered table-striped table-hover caption-top shadow bg-body rounded"
-               style="width: auto">
+    <div id="tables" class="container-fluid text-center table-responsive">
+<!--        <div id="toolbar" class="select">-->
+<!--            <select class="form-control">-->
+<!--                <option value="">Export Basic</option>-->
+<!--                <option value="all">Export All</option>-->
+<!--                <option value="selected">Export Selected</option>-->
+<!--            </select>-->
+
+<!--        </div>-->
+        <table th:if="${BOE1}" id="schedule"
+               class="table mx-auto table-bordered table-striped table-hover caption-top shadow bg-body rounded dt-responsive nowrap"
+               style="width: auto"
+               data-show-export="true"
+               data-pagination="false"
+               data-side-pagination="server">
             <caption>Work Schedule</caption>
             <thead class="table-dark">
             <tr>
@@ -102,8 +127,31 @@
             </tbody>
 
         </table>
+        <button onclick="generate()">Generate pdf</button>
+        <script>
+            function generate() {
+                var doc = new jspdf.jsPDF('l', 'pt', 'a4')
 
-        <table th:if="${BOEMore}" class="table mx-auto table-bordered table-striped table-hover caption-top shadow bg-body rounded"
+                doc.autoTable({
+                    html: '#schedule',
+                    startY: 25,
+                    // Default for all columns
+                    styles: { overflow: 'ellipsize', cellWidth: 'wrap' },
+                    columnStyles: { 0: { halign: 'center'},text: { cellWidth: 'auto' } },
+                    headStyles: {halign: 'center', fillColor: [0, 0, 0] },
+                    bodyStyles: {halign: 'center'},
+                    // Override the default above for the text column
+                    // columnStyles: { text: { cellWidth: 'auto' } },
+                    theme: 'grid' })
+
+                doc.save('schedule.pdf')
+            }
+        </script>
+
+
+
+        <table th:if="${BOEMore}"
+               class="table mx-auto table-bordered table-striped table-hover caption-top shadow bg-body rounded"
                style="width: auto">
             <caption>Work Schedule</caption>
             <thead class="table-dark">
@@ -129,6 +177,7 @@
 
         </table>
     </div>
+    <button onclick="demoFromHTML();">PDF</button>
 </div>
 <hr class="my-4">
 
@@ -142,7 +191,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Availability</th>
 
-<!--                <th scope="col">Delete</th>-->
+                <!--                <th scope="col">Delete</th>-->
             </tr>
             </thead>
             <tbody>
@@ -150,12 +199,13 @@
                 <th scope="row" th:text="${employeeStat.index+1}"></th>
                 <td class="font-weight-bold text-dark" th:text="${employee.name}"></td>
                 <td>
-                    <a class="font-weight-bold text-secondary" th:each="day, iterStat : ${employee.availability}" th:text="${!iterStat.last} ? ${day} + ', ' : ${day} " ></a>
+                    <a class="font-weight-bold text-secondary" th:each="day, iterStat : ${employee.availability}"
+                       th:text="${!iterStat.last} ? ${day} + ', ' : ${day} "></a>
                 </td>
-<!--                <td>-->
-<!--                    <a th:href="@{/home/delete-employee/__${employee.name}__}"-->
-<!--                       class="btn btn-danger shadow bg-body rounded">Delete</a>-->
-<!--                </td>-->
+                <!--                <td>-->
+                <!--                    <a th:href="@{/home/delete-employee/__${employee.name}__}"-->
+                <!--                       class="btn btn-danger shadow bg-body rounded">Delete</a>-->
+                <!--                </td>-->
             </tr>
             </tbody>
 
@@ -173,9 +223,11 @@
             <tbody>
 
             <tr th:block th:each="day : ${emptymap} ">
-                <th  scope="row"   th:text="${day.key}" ></th>
-                <th scope="row"  th:inline="text">
-                    <a th:if="${day.value} != null" class="font-weight-bold text-wrap text-secondary" th:each="empl, iterStat : ${day.value}" th:text="${!iterStat.last}? ${empl} + ', ' : ${empl}"></a>
+                <th scope="row" th:text="${day.key}"></th>
+                <th scope="row" th:inline="text">
+                    <a th:if="${day.value} != null" class="font-weight-bold text-wrap text-secondary"
+                       th:each="empl, iterStat : ${day.value}"
+                       th:text="${!iterStat.last}? ${empl} + ', ' : ${empl}"></a>
                     <a class="font-weight-bold text-secondary" th:if="${day.value} == null"> No possible Employee </a>
                 </th>
             </tr>
@@ -187,13 +239,13 @@
 
             <p class="lead">
                 Go back to adding employees
-                <p>
-                    <a th:href="@{/home/post-delete-add}"
-                       class="btn btn-outline-dark shadow bg-body rounded fa-2x" >
-                        <i class="fas fa-arrow-circle-left"></i>
-                    </a>
-                </p>
-                <hr class="my-4">
+            <p>
+                <a th:href="@{/home/post-delete-add}"
+                   class="btn btn-outline-dark shadow bg-body rounded fa-2x">
+                    <i class="fas fa-arrow-circle-left"></i>
+                </a>
+            </p>
+            <hr class="my-4">
             </p>
 
 
@@ -222,7 +274,8 @@
                             <hr class="my-4">
                             Algorithm spares the work equally. Everyone has almost the same amount of working days.
                             <hr class="my-4">
-                            <a  class="btn btn-outline-dark shadow bg-body rounded" th:href="@{/home/generated/based-on-equality}">Generate
+                            <a class="btn btn-outline-dark shadow bg-body rounded"
+                               th:href="@{/home/generated/based-on-equality}">Generate
                                 schedule
                                 <i class="fas fa-file-alt"></i>
                             </a>
@@ -257,11 +310,39 @@
             </div>
         </div>
 
-    </div>
-</div>
-
 
 </div>
 </div>
+
 
 </body>
+<script>
+    var $table = $('#schedule')
+
+    $(function() {
+            $table.bootstrapTable('destroy').bootstrapTable({
+                exportDataType: $(this).val(),
+                exportTypes: ['pdf']
+                // columns: [
+                //     {
+                //         field: 'state',
+                //         checkbox: true,
+                //         visible: $(this).val() === 'selected'
+                //     }
+                    // ,
+                    // {
+                    //   field: 'id',
+                    //   title: 'ID'
+                    // }, {
+                    //   field: 'name',
+                    //   title: 'Item Name'
+                    // }, {
+                    //   field: 'price',
+                    //   title: 'Item Price'
+                    // }
+                // ]
+            })
+        })
+</script>
+
+</html>
