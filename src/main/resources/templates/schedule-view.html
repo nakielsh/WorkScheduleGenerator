@@ -32,6 +32,10 @@
     <script src="https://cdn.jsdelivr.net/npm/jspdf-customfonts@0.0.4-rc.4/dist/jspdf.customfonts.min.js"></script>
     <script type="text/javascript" src="../../js/GeneralSans-Regular-normal.js"></script>
     <script type="text/javascript" src="../../../js/GeneralSans-Regular-normal.js"></script>
+    <script type="text/javascript" src="../js/icon.js"></script>
+    <script type="text/javascript" src="../../js/icon.js"></script>
+    <script type="text/javascript" src="../../../js/GeneralSans-Regular-normal.js"></script>
+    <script type="text/javascript" src="../../../js/icon.js"></script>
 
 
 </head>
@@ -299,19 +303,21 @@
 
 </body>
 
-<script >
+<script th:inline="javascript" type="text/javascript">
     // /*<![CDATA[*/
     function generate(html) {
-        // var month = [[${schedule.monthName}]]
-        // var year = [[${schedule.year}]]
+        var month = /*[[${schedule.monthName}]]*/ "";
+        var year = /*[[${schedule.year}]]*/ "";
         var doc = new jspdf.jsPDF('l', 'pt', 'a4')
 
         doc.addFileToVFS('GeneralSans-Regular-normal.ttf', font2);
         doc.addFont('GeneralSans-Regular-normal.ttf', 'GeneralSans-Regular', 'normal');
         doc.setFont("GeneralSans-Regular","normal");
-        // doc.setFontSize(20)
-        // doc.setTextColor(40)
-        // doc.text('Schedule for ' + month + ' ' + year, data.settings.margin.left + 15, 22)
+        doc.setFontSize(20)
+        if (icon) {
+            doc.addImage(icon, 'JPEG', 25, 5, 70, 25)
+        }
+        doc.text('Schedule for ' + month + ' ' + year, 100, 22)
         doc.autoTable({
             html: html,
             margin: {top: 40, right: 5, bottom: 40, left: 5},
@@ -322,7 +328,7 @@
             bodyStyles: {halign: 'center'},
             theme: 'grid' })
 
-        doc.save('schedule.pdf')
+        doc.save('schedule-' + month + '-' + year + '.pdf')
     }
     // /*]]>*/
 </script>

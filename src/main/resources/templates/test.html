@@ -10,6 +10,7 @@
   <script type="text/javascript" src="../static/js/Pattaya-Regular-normal.js"></script>
   <script type="text/javascript" src="../static/js/GeneralSans-Light-normal.js"></script>
   <script type="text/javascript" src="../static/js/GeneralSans-Regular-normal.js"></script>
+  <script type="text/javascript" src="../static/js/icon.js"></script>
 </head>
 <style>
   html {
@@ -46,12 +47,7 @@
     <th>Email</th>
     <th>Country</th>
     <th>IP-address</th>
-    <th>ID</th>
-    <th>First name</th>
-    <th>Last name</th>
-    <th>Email</th>
-    <th>Country</th>
-    <th>IP-address</th>
+
 
   </tr>
   </thead>
@@ -75,12 +71,7 @@
     <td>dmoore0@furl.net</td>
     <td>China</td>
     <td>211.56.242.221</td>
-    <td>1</td>
-    <td>Michał</td>
-    <td>Moore</td>
-    <td>dmoore0@furl.net</td>
-    <td>China</td>
-    <td>211.56.242.221</td>
+
   </tr>
   <tr>
     <td>2</td>
@@ -101,12 +92,6 @@
     <td>dmoore0@furl.net</td>
     <td>China</td>
     <td>211.56.242.221</td>
-    <td>1</td>
-    <td>Michał</td>
-    <td>Moore</td>
-    <td>dmoore0@furl.net</td>
-    <td>China</td>
-    <td>211.56.242.221</td>
   </tr>
   </tbody>
 </table>
@@ -114,6 +99,7 @@
 <script>
   // import {font} from '../js/Pattaya-Regular-normal.js'
   function generate() {
+    var month = "miesiac"
 
     var doc = new jspdf.jsPDF('l', 'pt', 'letter')
 
@@ -122,12 +108,15 @@
     doc.addFont('Pattaya-Regular-normal.ttf', 'Pattaya-Regular', 'normal');
     doc.setFont("Pattaya-Regular","normal");
     doc.setFontSize(20)
-    doc.text("Michał śnietka",14,16);
+    if (icon) {
+      doc.addImage(icon, 'JPEG', 25, 5, 70, 25)
+    }
+    doc.text("Michał śnietka" + month, 100, 22);
 
     doc.autoTable({
       html: '#table',
       margin: {top: 40, right: 5, bottom: 40, left: 5},
-      startY: 1,
+      startY: 40,
       styles: { overflow: 'linebreak', cellWidth: 'auto' ,font: "Pattaya-Regular", fontsize: 5},
       columnStyles: { 0: { halign: 'center'},text: { cellWidth: 'auto' } },
       headStyles: {halign: 'center', fillColor: [0, 0, 0] },
@@ -141,15 +130,4 @@
 </script>
 </body>
 </html>
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
+
