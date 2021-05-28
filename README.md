@@ -2,6 +2,9 @@
 
 A web app generating work schedule after being given employees and their days of availability. 
 
+## Technologies used
+Java, Spring Boot, PostgresSQL, Bootstrap 4, Thymeleaf, Maven
+
 ### Registration
 <img width="1274" alt="image" src="https://user-images.githubusercontent.com/60079684/120000333-fd619400-bfd2-11eb-9105-e80e68b36162.png">
 
