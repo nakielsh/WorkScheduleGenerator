@@ -2,8 +2,6 @@ package pw.edu.wsg.schedule;
 
 import pw.edu.wsg.employee.Employee;
 
-import java.time.Month;
-import java.time.Year;
 import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +12,7 @@ public class Schedule {
 
     private Map<Integer, Employee> realSchedule1;
     private Map<Integer, List<Employee>> realScheduleMulti;
-    private List<Employee> employeeList = new ArrayList<>();
+    private final List<Employee> employeeList = new ArrayList<>();
     private Integer year;
     private String monthName;
     private Integer month;
@@ -88,8 +86,8 @@ public class Schedule {
         return monthName;
     }
 
-    public void setMonthName(){
-        switch(month) {
+    public void setMonthName() {
+        switch (month) {
             case 1:
                 monthName = "January";
                 break;
@@ -130,46 +128,42 @@ public class Schedule {
         }
     }
 
-    public Map<Integer, List<String>> findEmptyDaysInSchedule1(){
-        Map<Integer, List<String> >  emptyDaysWithPossibleEmployees = new HashMap<>();
+    public Map<Integer, List<String>> findEmptyDaysInSchedule1() {
+        Map<Integer, List<String>> emptyDaysWithPossibleEmployees = new HashMap<>();
 
         for (int i : realSchedule1.keySet()) {
             if (realSchedule1.get(i).getName().equals("")) {
-                List<String> possibleEmployees = new ArrayList<>();
-                for (Employee employee : employeeList) {
-                    if (employee.getAvailability().contains(i)) {
-                        possibleEmployees.add(employee.getName());
-                    }
-                }
-                if (possibleEmployees.size() == 0 ){
-                    possibleEmployees = null;
-                }
-                emptyDaysWithPossibleEmployees.put(i, possibleEmployees);
+                findPossibleEmployees(emptyDaysWithPossibleEmployees, i);
             }
         }
         return emptyDaysWithPossibleEmployees;
     }
 
-
-    public Map<Integer, List<String>> findEmptyDaysInScheduleMulti(){
-        Map<Integer, List<String> >  emptyDaysWithPossibleEmployees = new HashMap<>();
+    public Map<Integer, List<String>> findEmptyDaysInScheduleMulti() {
+        Map<Integer, List<String>> emptyDaysWithPossibleEmployees = new HashMap<>();
 
         for (int i : realScheduleMulti.keySet()) {
-                if (realScheduleMulti.get(i).size() < maxPeopleForDay) {
-                    List<String> possibleEmployees = new ArrayList<>();
-                    for (Employee employee1 : employeeList) {
-                        if (employee1.getAvailability().contains(i)) {
-                            possibleEmployees.add(employee1.getName());
-                        }
-                    }
-                    if (possibleEmployees.size() == 0 ){
-                        possibleEmployees = null;
-                    }
-                    emptyDaysWithPossibleEmployees.put(i, possibleEmployees);
-                }
+            if (realScheduleMulti.get(i).size() < maxPeopleForDay) {
+                findPossibleEmployees(emptyDaysWithPossibleEmployees, i);
             }
+        }
         return emptyDaysWithPossibleEmployees;
     }
+
+    private void findPossibleEmployees(Map<Integer, List<String>> emptyDaysWithPossibleEmployees, int i) {
+        List<String> possibleEmployees = new ArrayList<>();
+        for (Employee employee : employeeList) {
+            assert employee.getAvailability() != null;
+            if (employee.getAvailability().contains(i)) {
+                possibleEmployees.add(employee.getName());
+            }
+        }
+        if (possibleEmployees.size() == 0) {
+            possibleEmployees = null;
+        }
+        emptyDaysWithPossibleEmployees.put(i, possibleEmployees);
+    }
+
 
     @Override
     public String toString() {

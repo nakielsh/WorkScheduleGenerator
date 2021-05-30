@@ -41,7 +41,7 @@ public class BOE implements IBOE {
             System.out.println(employee.getName() + " days left: " + employee.getDaysLeft());
         }
 
-        for (Employee employee : schedule.getEmployeeList()) {
+        for (Employee ignored : schedule.getEmployeeList()) {
             fillEmptyDays();
             makeScheduleEqual();
         }
@@ -52,9 +52,7 @@ public class BOE implements IBOE {
             System.out.println(employee.getName() + " days left: " + employee.getDaysLeft());
         }
         setNumberOfDays();
-
         schedule.setRealSchedule1(realSchedule);
-
 
         return schedule;
     }
@@ -173,7 +171,7 @@ public class BOE implements IBOE {
     }
 
     public Employee findLeastAvailableEmployeeThisDay(int day) {
-        int min = 100;
+        int min = 200;
         Employee leastEmployee = new Employee("");
         for (Employee employee : schedule.getEmployeeList()) {
             if (employee.getAvailability() != null) {
@@ -188,7 +186,6 @@ public class BOE implements IBOE {
 
             }
         }
-        System.out.println("Least available Employee: " + leastEmployee.getName() + " for day " + day);
         return leastEmployee;
     }
 
