@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface AppUserService extends UserDetailsService {
 
-    public Long createAppUser(CreateAppUserRequest request);
+     Long createAppUser(CreateAppUserRequest request);
 
-    public List<AppUser> getAppUsers();
+     List<AppUser> getAppUsers();
 }

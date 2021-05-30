@@ -1,148 +1,146 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:style="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>WSG App</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-          crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-          crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
-        rel="stylesheet"/>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://kit.fontawesome.com/5af5eb3f80.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>WSG App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"
+          rel="stylesheet"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/5af5eb3f80.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
 
 <!-- Navigation -->
 <div class="pos-f-t">
-  <div class="collapse " id="navbarToggleExternalContent">
-    <div class="d-flex bd-highlight">
-      <div class="bg-white p-4 flex-grow-1 bd-highlight">
-        <h5 class="text-dark h4">Thank you for using WSG App</h5>
-        <span class="text-muted">See you later.</span>
-        <div class="p-4 bd-highlight">
-          <a class="btn btn-outline-danger shadow bg-body rounded " th:href="@{/logout}">Logout
-            <i class="fas fa-sign-out-alt"></i>
-          </a>
-        </div>
-      </div>
+    <div class="collapse " id="navbarToggleExternalContent">
+        <div class="d-flex bd-highlight">
+            <div class="bg-white p-4 flex-grow-1 bd-highlight">
+                <h5 class="text-dark h4">Thank you for using WSG App</h5>
+                <span class="text-muted">See you later.</span>
+                <div class="p-4 bd-highlight">
+                    <a class="btn btn-outline-danger shadow bg-body rounded " th:href="@{/logout}">Logout
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                </div>
+            </div>
 
-      <div class="bg-white p-4 flex-grow-2 bd-highlight">
-        <h5 class="text-dark h4">Check saved employees</h5>
-        <span class="text-muted">Shows list of all saved employees in database</span>
-        <div class="p-4 bd-highlight">
-          <a class="btn btn-outline-dark shadow bg-body rounded " th:href="@{/home/list-of-employees}">Show list
-            <i class="fas fa-user-friends"></i>
-          </a>
+            <div class="bg-white p-4 flex-grow-2 bd-highlight">
+                <h5 class="text-dark h4">Check saved employees</h5>
+                <span class="text-muted">Shows list of all saved employees in database</span>
+                <div class="p-4 bd-highlight">
+                    <a class="btn btn-outline-dark shadow bg-body rounded " th:href="@{/home/list-of-employees}">Show
+                        list
+                        <i class="fas fa-user-friends"></i>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
 
 <nav class="navbar navbar-light bg-light sticky-top d-flex bd-highlight">
-  <div class="navbar-brand mr-auto p-2 bd-highlight" href="#">
-    <img src="https://i.imgur.com/QbLHnon.png" width="100" height="30" class="d-inline-block align-top" alt="">
-  </div>
-  <div class="p-2 bd-highlight lead" th:text="'Welcome, ' + ${appuser}"></div>
-  <div class="p-2 bd-highlight">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
-            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
-    </button>
-  </div>
+    <div class="navbar-brand mr-auto p-2 bd-highlight" href="#">
+        <img src="https://i.imgur.com/QbLHnon.png" width="100" height="30" class="d-inline-block align-top" alt="">
+    </div>
+    <div class="p-2 bd-highlight lead" th:text="'Welcome, ' + ${appuser}"></div>
+    <div class="p-2 bd-highlight">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
 </nav>
 
 <div class="jumbotron jumbotron-fluid ">
 
-  <div th:if="${#request.getParameter('isDeleted')}" role="alert" aria-live="assertive" aria-atomic="true"
-       class="toast justify-content-center align-items-center" data-autohide="false"
-       style="position: relative;  left: 40px;">
-    <div class="toast-header ">
-      <i class="far fa-trash-alt fa-3x text-danger"></i>
-      <strong class="mr-auto">Deleted</strong>
-      <small>while ago</small>
-      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="toast-body">
-      Employee <a class="font-weight-bold" th:text="${#request.getParameter('name')}"></a> deleted
-    </div>
-  </div>
-
-  <div class="jumbotron jumbotron-fluid container text-center">
-
-    <div>
-      <h1 class="display-4">Your all employees</h1>
-
-      <hr class="my-4">
+    <div th:if="${#request.getParameter('isDeleted')}" role="alert" aria-live="assertive" aria-atomic="true"
+         class="toast justify-content-center align-items-center" data-autohide="false"
+         style="position: relative;  left: 40px;">
+        <div class="toast-header ">
+            <i class="far fa-trash-alt fa-3x text-danger"></i>
+            <strong class="mr-auto">Deleted</strong>
+            <small>while ago</small>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            Employee <a class="font-weight-bold" th:text="${#request.getParameter('name')}"></a> deleted
+        </div>
     </div>
 
-  </div>
+    <div class="jumbotron jumbotron-fluid container text-center">
+
+        <div>
+            <h1 class="display-4">Your all employees</h1>
+
+            <hr class="my-4">
+        </div>
+
+    </div>
 </div>
 
 
-
-  <div class="container text-center table-responsive">
+<div class="container text-center table-responsive">
     <table class="table table-striped table-hover caption-top shadow bg-body rounded" style="width: 100%">
-      <caption>List of your all employees</caption>
-      <thead class="table-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Availability</th>
-        <th scope="col">Delete</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="employee :${employeeList}">
-        <th scope="row" th:text="${employeeStat.index+1}"></th>
-        <td class="font-weight-bold text-dark" th:text="${employee.name}"></td>
-        <td>
-          <a class="font-weight-bold text-secondary" th:each="day, iterStat : ${employee.availability}" th:text="${!iterStat.last} ? ${day} + ', ' : ${day} " ></a>
-        </td>
-        <td>
-            <a th:href="@{/home/delete-employee-from-db/__${employee.name}__}"
-               class="btn btn-danger shadow bg-body rounded">Delete</a>
-        </td>
-      </tr>
-      </tbody>
+        <caption>List of your all employees</caption>
+        <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Availability</th>
+            <th scope="col">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee :${employeeList}">
+            <th scope="row" th:text="${employeeStat.index+1}"></th>
+            <td class="font-weight-bold text-dark" th:text="${employee.name}"></td>
+            <td>
+                <a class="font-weight-bold text-secondary" th:each="day, iterStat : ${employee.availability}"
+                   th:text="${!iterStat.last} ? ${day} + ', ' : ${day} "></a>
+            </td>
+            <td>
+                <a th:href="@{/home/delete-employee-from-db/__${employee.name}__}"
+                   class="btn btn-danger shadow bg-body rounded">Delete</a>
+            </td>
+        </tr>
+        </tbody>
 
     </table>
 
 
-
-
     <div class="jumbotron">
 
-      <p class="lead">
-        Go back to adding employees
-      <p>
-        <a th:href="@{/home/post-delete-add}"
-           class="btn btn-outline-dark shadow bg-body rounded fa-2x" >
-          <i class="fas fa-arrow-circle-left"></i>
-        </a>
-      </p>
-      <hr class="my-4">
-
+        <p class="lead">
+            Go back to adding employees
+        <p>
+            <a th:href="@{/home/post-delete-add}"
+               class="btn btn-outline-dark shadow bg-body rounded fa-2x">
+                <i class="fas fa-arrow-circle-left"></i>
+            </a>
+        </p>
+        <hr class="my-4">
 
 
     </div>
 
-  </div>
+</div>
 </div>
 
 
@@ -152,9 +150,9 @@
 </body>
 
 <script>
-  $(document).ready(function () {
-    $('.toast').toast('show');
-  });
+    $(document).ready(function () {
+        $('.toast').toast('show');
+    });
 </script>
 
 </html>

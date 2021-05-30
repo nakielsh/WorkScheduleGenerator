@@ -4,10 +4,9 @@ import pw.edu.wsg.employee.Employee;
 import pw.edu.wsg.schedule.Schedule;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class BOE {
+public class BOE implements IBOE {
 
     private final Schedule schedule;
     private int leastWantedDay;

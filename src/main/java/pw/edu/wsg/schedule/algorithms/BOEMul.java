@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BOEMul {
+public class BOEMul implements IBOE {
 
     private final Schedule schedule;
     private int leastWantedDay;
@@ -47,7 +47,7 @@ public class BOEMul {
             System.out.println(employee.getName() + " days left: " + employee.getDaysLeft());
         }
 
-        for (int i = 0; i <= maxPeopleForDay ; i++){
+        for (int i = 0; i <= maxPeopleForDay; i++) {
             fillEmptyDays();
         }
 
