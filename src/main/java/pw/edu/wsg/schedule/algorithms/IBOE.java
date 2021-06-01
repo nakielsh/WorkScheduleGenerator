@@ -11,7 +11,7 @@ public interface IBOE {
 
     void countDaysWithoutPeople();
 
-    void findLeastWantedDay();
+    int findLeastWantedDay();
 
     void fillEmptyDays();
 

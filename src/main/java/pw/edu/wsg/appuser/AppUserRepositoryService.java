@@ -77,7 +77,7 @@ public class AppUserRepositoryService implements AppUserService {
     public String getUsername() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         AppUser principal;
-        String username = "Blad";
+        String username;
         String name = "";
         if (null != securityContext.getAuthentication()) {
             principal = (AppUser) securityContext.getAuthentication().getPrincipal();

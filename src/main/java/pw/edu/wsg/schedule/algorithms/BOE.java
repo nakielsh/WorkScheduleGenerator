@@ -108,21 +108,21 @@ public class BOE implements IBOE {
     }
 
     public void createMap() {
-        for (Integer i = 1; i <= schedule.getDaysInMonth(); i++) {
+        for (int i = 1; i <= schedule.getDaysInMonth(); i++) {
             peopleForDay.put(i, 0);
             realSchedule.put(i, new Employee(""));
         }
     }
 
     public void countDaysWithoutPeople() {
-        for (Integer i = 1; i <= schedule.getDaysInMonth(); i++) {
+        for (int i = 1; i <= schedule.getDaysInMonth(); i++) {
             if (peopleForDay.get(i) == 0) {
                 daysWithoutPeople += 1;
             }
         }
     }
 
-    public void findLeastWantedDay() {
+    public int findLeastWantedDay() {
         for (Employee employee : schedule.getEmployeeList()) {
             assert employee.getAvailability() != null;
             for (Integer day : employee.getAvailability()) {
@@ -142,12 +142,13 @@ public class BOE implements IBOE {
         leastWantedDay = 1;
 
         for (Integer key : peopleForDay.keySet()) {
-            if (peopleForDay.get(key) > peopleForDay.get(leastWantedDay)) {
+            if (peopleForDay.get(key) < peopleForDay.get(leastWantedDay)) {
                 if (peopleForDay.get(key) != 0) {
                     leastWantedDay = key;
                 }
             }
         }
+        return leastWantedDay;
     }
 
     public void fillEmptyDays() {

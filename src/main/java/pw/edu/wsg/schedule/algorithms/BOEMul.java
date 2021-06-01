@@ -59,7 +59,7 @@ public class BOEMul implements IBOE {
     }
 
 
-    public void findLeastWantedDay() {
+    public int findLeastWantedDay() {
         for (Employee employee : schedule.getEmployeeList()) {
             assert employee.getAvailability() != null;
             for (Integer day : employee.getAvailability()) {
@@ -78,12 +78,13 @@ public class BOEMul implements IBOE {
         leastWantedDay = 1;
 
         for (int key : peopleForDay.keySet()) {
-            if (peopleForDay.get(key) > peopleForDay.get(leastWantedDay)) {
+            if (peopleForDay.get(key) < peopleForDay.get(leastWantedDay)) {
                 if (peopleForDay.get(key) != 0) {
                     leastWantedDay = key;
                 }
             }
         }
+        return leastWantedDay;
     }
 
     public Employee findLeastAvailableEmployeeThisDay(int day) {

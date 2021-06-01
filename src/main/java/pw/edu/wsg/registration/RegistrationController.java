@@ -18,7 +18,6 @@ public class RegistrationController {
 
     private static final Logger LOG = Logger.getLogger(RegistrationService.class.getName());
 
-
     private final AppUserRepositoryService appUserRepositoryService;
 
     public RegistrationController(AppUserRepositoryService appUserRepositoryService) {

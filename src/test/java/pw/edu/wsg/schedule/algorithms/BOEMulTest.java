@@ -1,36 +1,30 @@
 package pw.edu.wsg.schedule.algorithms;
 
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import pw.edu.wsg.employee.Employee;
 import pw.edu.wsg.schedule.Schedule;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BOETest {
+class BOEMulTest {
 
     List<Integer> allDays = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31);
 
-
     @Test
-    void shouldFillAllDaysWhenGivenFullAvailability() {
+    void shouldFillAllDaysWhenGivenFullAvailabilityFor2Employees() {
         //given
         Schedule schedule = new Schedule();
         schedule.setYear(2020);
         schedule.setMonth(3);
         schedule.setDaysInMonth();
 
-        List<Integer> avLiska = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> avLiska = allDays;
         List<Integer> avOlka = Arrays.asList(11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
-        List<Integer> avMarty = Arrays.asList(21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31);
+        List<Integer> avMarty = allDays;
 
         Employee lisek = new Employee("Lisek", avLiska);
         schedule.addToEmployeeList(lisek);
@@ -42,9 +36,9 @@ class BOETest {
         schedule.addToEmployeeList(Marta);
 
         //when
-        BOE boe = new BOE(schedule);
-        Schedule generatedSchedule = boe.generateSchedule();
-        int size = generatedSchedule.findEmptyDaysInSchedule1().size();
+        BOEMul boeMul = new BOEMul(schedule, 2);
+        Schedule generatedSchedule = boeMul.generateSchedule();
+        int size = generatedSchedule.findEmptyDaysInScheduleMulti().size();
 
         //then
         assertEquals(0, size);
@@ -65,35 +59,12 @@ class BOETest {
         }
 
         //when
-        BOE boe = new BOE(schedule);
-        Schedule generatedSchedule = boe.generateSchedule();
-        int size = generatedSchedule.findEmptyDaysInSchedule1().size();
+        BOEMul boeMul = new BOEMul(schedule, 2);
+        Schedule generatedSchedule = boeMul.generateSchedule();
+        int size = generatedSchedule.findEmptyDaysInScheduleMulti().size();
 
         //then
         assertEquals(31, size);
-    }
-
-    @Test
-    void shouldFillAllDaysWhenGivenFullAvailabilityFor3Employees() {
-        //given
-        Schedule schedule = new Schedule();
-        schedule.setYear(2020);
-        schedule.setMonth(3);
-        schedule.setDaysInMonth();
-
-        for (int i = 0; i < 3; i++) {
-            List<Integer> days = allDays;
-            Employee employee = new Employee(String.valueOf(i), days);
-            schedule.addToEmployeeList(employee);
-        }
-
-        //when
-        BOE boe = new BOE(schedule);
-        Schedule generatedSchedule = boe.generateSchedule();
-        int size = generatedSchedule.findEmptyDaysInSchedule1().size();
-
-        //then
-        assertEquals(0, size);
     }
 
     @Test
@@ -112,9 +83,9 @@ class BOETest {
         }
 
         //when
-        BOE boe = new BOE(schedule);
-        Schedule generatedSchedule = boe.generateSchedule();
-        int size = generatedSchedule.findEmptyDaysInSchedule1().size();
+        BOEMul boeMul = new BOEMul(schedule, 10);
+        Schedule generatedSchedule = boeMul.generateSchedule();
+        int size = generatedSchedule.findEmptyDaysInScheduleMulti().size();
 
         //then
         assertEquals(0, size);
@@ -135,9 +106,9 @@ class BOETest {
         }
 
         //when
-        BOE boe = new BOE(schedule);
-        Schedule generatedSchedule = boe.generateSchedule();
-        int size = generatedSchedule.findEmptyDaysInSchedule1().size();
+        BOEMul boeMul = new BOEMul(schedule, 10);
+        Schedule generatedSchedule = boeMul.generateSchedule();
+        int size = generatedSchedule.findEmptyDaysInScheduleMulti().size();
 
         //then
         assertEquals(31, size);
@@ -162,11 +133,11 @@ class BOETest {
         schedule.addToEmployeeList(employee);
 
         //when
-        BOE boe = new BOE(schedule);
-        boe.createMap();
-        boe.countMaxWorkingDays();
-        boe.setAllDaysLeft();
-        int leastWantedDay = boe.findLeastWantedDay();
+        BOEMul boeMul = new BOEMul(schedule, 10);
+        boeMul.createMap();
+        boeMul.countMaxWorkingDays();
+        boeMul.setAllDaysLeft();
+        int leastWantedDay = boeMul.findLeastWantedDay();
 
         //then
         assertEquals(10, leastWantedDay);
@@ -191,15 +162,14 @@ class BOETest {
         schedule.addToEmployeeList(employee);
 
         //when
-        BOE boe = new BOE(schedule);
-        boe.createMap();
-        boe.countMaxWorkingDays();
-        boe.setAllDaysLeft();
-        String leastAvailableEmployee = boe.findLeastAvailableEmployeeThisDay(2).getName();
+        BOEMul boeMul = new BOEMul(schedule, 2);
+        boeMul.createMap();
+        boeMul.countMaxWorkingDays();
+        boeMul.setAllDaysLeft();
+        String leastAvailableEmployee = boeMul.findLeastAvailableEmployeeThisDay(2).getName();
 
         //then
         assertEquals("additional", leastAvailableEmployee);
     }
-
 
 }
