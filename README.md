@@ -3,7 +3,7 @@
 A web app generating work schedule after being given employees and their days of availability. 
 
 ## Technologies used
-Java, Spring Boot, PostgresSQL, Bootstrap 4, Thymeleaf, Maven
+Java, Spring Boot, PostgresSQL, Bootstrap 4, Thymeleaf, Maven, JUnit 5
 
 ### [Demo app](https://work-schedule-generator.herokuapp.com/)
 
