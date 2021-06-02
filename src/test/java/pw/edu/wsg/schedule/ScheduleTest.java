@@ -1,10 +1,12 @@
 package pw.edu.wsg.schedule;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 import pw.edu.wsg.employee.Employee;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
 class ScheduleTest {
 
     @Test
@@ -52,4 +54,6 @@ class ScheduleTest {
         //then
         assertEquals("April", month);
     }
+
+
 }

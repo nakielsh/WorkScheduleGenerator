@@ -3,7 +3,6 @@ package pw.edu.wsg.employee;
 import org.springframework.stereotype.Service;
 import pw.edu.wsg.appuser.AppUserRepositoryService;
 
-
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -15,7 +14,7 @@ public class EmployeeRepositoryService implements EmployeeService {
     private static final Logger LOG = Logger.getLogger(EmployeeRepositoryService.class.getName());
 
     private final EmployeeRepository employeeRepository;
-    private AppUserRepositoryService appUserRepositoryService;
+    private final AppUserRepositoryService appUserRepositoryService;
 
     public EmployeeRepositoryService(EmployeeRepository employeeRepository, AppUserRepositoryService appUserRepositoryService) {
         this.employeeRepository = employeeRepository;
