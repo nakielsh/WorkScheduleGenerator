@@ -29,9 +29,21 @@ public class ScheduleService implements IScheduleService {
     public void addEmployee(Employee employee) {
         boolean employeeExists = !employeeRepository
                 .findByName(employee.getName()).isEmpty();
+        boolean shouldBeAdded = true;
+
+        if (employeeExists) {
+            List<Employee> list = employeeRepository
+                    .findByName(employee.getName());
+            for (Employee employee1 : list) {
+                if (employee1.getApp_user_id().equals(appUserRepositoryService.getId())) {
+                    shouldBeAdded = false;
+                }
+            }
+        }
+
         Long id;
 
-        if (!employeeExists) {
+        if (shouldBeAdded) {
             id = employeeService.createEmployee(new CreateEmployeeRequest(employee.getName(), employee.getAvailability()));
             employeeService.getEmployee(id);
         } else {

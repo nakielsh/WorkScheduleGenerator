@@ -3,7 +3,10 @@ package pw.edu.wsg.schedule;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pw.edu.wsg.appuser.AppUserRepositoryService;
 import pw.edu.wsg.employee.Employee;
@@ -217,7 +220,8 @@ public class ScheduleController {
     @GetMapping("/delete-employee-from-db/{name}")
     public String deleteEmployeeFromDB(@PathVariable(name = "name") String deletedEmployeeName, RedirectAttributes redirectAttributes) {
 
-        employeeRepository.deleteEmployeeByName(deletedEmployeeName);
+//        employeeRepository.deleteEmployeeByName(deletedEmployeeName);
+        employeeRepository.deleteEmployeeByNameAndApp_user_id(deletedEmployeeName, appUserRepositoryService.getId());
         redirectAttributes.addAttribute("isDeleted", true);
         redirectAttributes.addAttribute("name", deletedEmployeeName);
 

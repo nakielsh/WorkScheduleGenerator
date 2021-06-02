@@ -1,13 +1,10 @@
 package pw.edu.wsg.employee;
 
 import com.sun.istack.NotNull;
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
