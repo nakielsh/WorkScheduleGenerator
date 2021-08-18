@@ -2,6 +2,8 @@
 
 A web app generating work schedule after being given employees and their days of availability. 
 
+[![Java CI with Maven](https://github.com/nakielsh/WorkScheduleGenerator/actions/workflows/maven.yml/badge.svg)](https://github.com/nakielsh/WorkScheduleGenerator/actions/workflows/maven.yml)
+
 ## Technologies used
 Java, Spring Boot, PostgresSQL, Bootstrap 4, Thymeleaf, Maven, JUnit 5
 
